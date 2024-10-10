@@ -13,6 +13,19 @@ class DayManager {
 
   // Get the current number of actions
   int getActions() const;
+
+// Set the current number of actions
+void setActions(int actions);
+
+// Get the current day
+int getDay() const;
+
+// Set the current day
+void setDay(int day);
+
+// Reset actions for a new day
+void resetActions(int newActions);
+
 };
 
 #endif
