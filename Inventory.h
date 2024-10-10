@@ -1,6 +1,10 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
+// This class contains a vector which stores the pointers to items in the
+// inventory. This class can also add or remove an item from the inventory, as
+// well as display everything that is within the inventory.
+
 #include <vector>
 
 #include "Item.h"
