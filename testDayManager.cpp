@@ -6,6 +6,9 @@ using namespace std;
 
 int main(){
 
+    // create an object of DayManager
+    DayManager day(3);
+
 
 
     return 0;
