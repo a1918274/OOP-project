@@ -21,11 +21,26 @@ class Item {
     //Virtual Destructor
     virtual ~Item(); 
 
+    //Pure virtual item for displaying item details
+    virtual void display() const = 0;
+
+    //Pure virtual function for serialization 
+    virtual void serialize(std::ofstream& outFile) const = 0;
+
+    //Static method for deserialization
+    static Item* deserialize(std::ifstream& inFile);
+
     //Getter for item name
     std::string getName() const;
 
     //Getter for item price
     int getPrice() const;
+
+    //Setter for item name
+    void setName(std::string name);
+
+    //Setter for item price
+    void setPrice(int price);
 
 
 };
