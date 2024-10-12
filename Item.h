@@ -15,8 +15,18 @@ class Item {
     int price; //The price of the item
 
     public:
-    Item(const std::string& n, int p); //Constructor
-    virtual ~Item(); //Virtual Destructor
+    //Constructor
+    Item(const std::string& n, int p);
+
+    //Virtual Destructor
+    virtual ~Item(); 
+
+    //Getter for item name
+    std::string getName() const;
+
+    //Getter for item price
+    int getPrice() const;
+
 
 };
 
