@@ -1,9 +1,9 @@
+#ifndef ITEM_H
+#define ITEM_H
+
 //Abstract class that contains the information about each ‘item’, specifically 
 //name and price (i.e. the name and price of either a crop or animal). 
 //The class also contains a pure virtual function for displaying item information.
-
-#ifndef ITEM_H
-#define ITEM_H
 
 #include <iostream>
 #include <string>
