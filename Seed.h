@@ -1,8 +1,31 @@
 #ifndef SEED_H
 #define SEED_H
 
-// 
+#include <fstream>  // for read/write files
+#include <string>
 
+#include "Item.h"
 
+using namespace std;  // use std or not???s
 
-#endif
+// this class contains information about the seed of a type of plant the player
+// can grow, including potato, snow pea and tomato seeds
+
+// this class inherits from item class
+
+// forward declaration of the Plant class
+class Plant;
+
+class Seed : public Item {
+ public:
+  // constructor to initialize a Seed object
+  Seed(const string& name, int price);
+
+  // displays the seed's details (override display method from Item class)
+  void display() const override;
+
+  // growing the seed into a plant (Plant class)
+  Plant* grow() const;
+};
+
+#endif  // SEED_H
