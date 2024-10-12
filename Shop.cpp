@@ -1,11 +1,15 @@
 #include "Shop.h"
+#include "Seed.h"
 #include <iostream>
 
 using namespace std;
 
 //Initializing the shop with items
 Shop::Shop(){
-    //to be filled in
+    inventory.addItem(new Seed("Potato(Seeds)", 4));
+    inventory.addItem(new Seed("Corn(Seeds)", 8));
+    inventory.addItem(new Seed("Tomato(Seeds)", 11));
+    //add Dog and animals later
 }
 
 

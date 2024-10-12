@@ -1,4 +1,6 @@
 #include "Item.h"
+#include "Seed.h"
+#include "Plant.h"
 #include <fstream>
 #include <string>
 #include <iostream>
@@ -31,5 +33,28 @@ void Item::setPrice(int price){
 
 //Static method to deserialize an item from a file
 Item* Item::deserialize(std::ifstream& inFile) {
+    std::string type;
+    inFile >> type; // Read the type of item
+
+
+    std::cout << "Type read: " << type << std::endl; // Debug output
+
+
+    if (inFile.fail()) {
+        std::cerr << "Error reading item type from file.\n";
+        return nullptr; // Handle error
+    }
+
+
+    if (type == "Seed") {
+        return Seed::deserialize(inFile);
+    } else if (type == "Plant") {
+        return Plant::deserialize(inFile);
+
+        //Insert grown and young animal later
+
+    std::cerr << "Unknown item type: " << type << "\n"; // Log unknown type
+    return nullptr; // Return nullptr for unknown types
+
 
 };
