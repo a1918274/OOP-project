@@ -21,7 +21,7 @@ class YoungAnimal : public Animal {
   // displays the young animal's details (override)
   void display() const override;
 
-  // serialize and deserialize young animal to and from a file
+  // serialize (override) and deserialize young animal to and from a file
   void serialize(std::ofstream& outFile) const override;
   static YoungAnimal* deserialize(std::ifstream& inFile);
 };
