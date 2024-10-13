@@ -48,6 +48,16 @@ bool Shop::buyItem(int choice, int& gold, Inventory& playerInventory) {
     Item* item = inventory.getItems()[choice - 1];
 
 //Method for purchasing the Dog item
+if (Dog* dog = dynamic_cast<Dog*>(item)) {
+        if (gold >= item->getPrice()) {
+            gold -= item->getPrice(); // Deduct the gold
+            cout << "\nLooking into the doggo's eyes, you can't help but to bring the good boi home.\n\n";
+            return true; // Indicate a special action (e.g., quit)
+        } else {
+            cout << "You don't have enough gold now but promise to someday return to the good boi...\n";
+            return false;
+        }
+    }
 
 
 // Handle purchasing other items
