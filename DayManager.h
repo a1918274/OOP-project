@@ -25,9 +25,6 @@ class DayManager {
 
   // Set the current day
   void setDay(int day);
-
-  // Reset actions for a new day
-  void resetActions(int newActions);
 };
 
 #endif
