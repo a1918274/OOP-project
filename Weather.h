@@ -5,6 +5,10 @@
 #include <string>
 #include <cstdlib> //Library is used for rand() function
 
+// This class is responsible for managing the random weather system, 
+// wherein each day has a 75% chance of being sunny, 20% chance of rain, 
+// or 5% chance of an earthquake occurring.
+
 class Weather {
 public:
     enum Type { SUNNY, RAIN, EARTHQUAKE };
