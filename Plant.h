@@ -6,7 +6,7 @@
 #include<fstream>
 
 //This class contains information about a type of plant the 
-//player can grow (potato, snow pea, or tomato).
+//player can grow (potato, corn, or tomato).
 
 class Plant: public Item{
 private:

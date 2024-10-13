@@ -8,7 +8,7 @@
 
 
 // this class contains information about the seed of a type of plant the player
-// can grow, including potato, snow pea and tomato seeds
+// can grow, including potato, corn and tomato seeds
 
 // this class inherits from item class
 

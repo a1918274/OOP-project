@@ -14,14 +14,11 @@ class Shop{
     // Constructor to initialize shop inventory
     Shop();
 
-
     // Destructor to clean up dynamically allocated items
     ~Shop();
 
-
     // Function to display available items in the shop
     void displayItems() const;
-
 
     // Function to buy an item from the shop
     bool buyItem(int choice, int& gold, Inventory& playerInventory);
