@@ -8,7 +8,7 @@
 #include <string>
 
 #include "Animal.h"
-// #include "GrownAnimal.h"
+#include "GrownAnimal.h"
 
 class YoungAnimal : public Animal {
  public:
@@ -16,7 +16,7 @@ class YoungAnimal : public Animal {
   YoungAnimal(const std::string& n, int p, const std::string& t);
 
   // logic to grow the young animal into an adult animal
-  // function to return grown animal: grow()
+  GrownAnimal* grow();
 
   // displays the young animal's details (override)
   void display() const override;

@@ -8,7 +8,16 @@ YoungAnimal::YoungAnimal(const std::string& n, int p, const std::string& t)
     : Animal(n, p, t) {}
 
 // logic to grow the young animal into an adult animal
-// function to return grown animal: grow()
+GrownAnimal* YoungAnimal::grow() {
+  if (name == "Chick") {
+    return new GrownAnimal("Chicken", 16, "Egg", 7);
+  } else if (name == "Lamb") {
+    return new GrownAnimal("Sheep", 20, "Wool", 9);
+  } else if (name == "Calf") {
+    return new GrownAnimal("Cow", 25, "Milk", 12);
+  }
+  return nullptr;  // return nullptr if no matching young animal is found
+}
 
 // displays the young animal's details (override)
 void YoungAnimal::display() const {
