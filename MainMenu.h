@@ -1,3 +1,4 @@
+#ifndef MAINMENU_H
 #define MAINMENU_H
 
 #include "Game.h" // Include the Game class

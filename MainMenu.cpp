@@ -1,4 +1,5 @@
 #include "MainMenu.h"
+#include "ValidNumberCheck.h"
 #include <iostream>
 
 using namespace std;
@@ -18,8 +19,13 @@ void MainMenu:: displayMenu() {
         cout << "Choose an option: ";
         cin >> input; // Read input as a string
 
-        // Validate input here?
-
+        // Validate the input
+        if (ValidNumberCheck::isValidNumber(input)) {
+            int choice = stoi(input); // Convert to integer
+            handleSelection(choice);
+        } else {
+            cout << "Invalid input. Please enter a number.\n";
+        }
     }
 }
 
