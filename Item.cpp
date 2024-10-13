@@ -1,6 +1,8 @@
 #include "Item.h"
 #include "Seed.h"
 #include "Plant.h"
+#include "YoungAnimal.h"
+#include "GrownAnimal.h"
 #include <fstream>
 #include <string>
 #include <iostream>
@@ -12,14 +14,10 @@ Item::Item(const std::string& n, int p) : name(n), price(p){};
 Item::~Item() = default; 
 
 //Getter for item name
-std::string Item::getName() const{
-    return name;
-};
+std::string Item::getName() const{ return name; };
 
 //Getter for item price
-int Item::getPrice() const {
-    return price;
-};
+int Item::getPrice() const { return price; };
 
 //Setter for item name
 void Item::setName(std::string name){
@@ -50,8 +48,11 @@ Item* Item::deserialize(std::ifstream& inFile) {
         return Seed::deserialize(inFile);
     } else if (type == "Plant") {
         return Plant::deserialize(inFile);
-
-        //Insert grown and young animal later
+    } else if (type == "YoungAnimal") {
+          return YoungAnimal::deserialize(inFile);
+    } else if (type == "GrownAnimal") {
+        return GrownAnimal::deserialize(inFile);
+    }
 
     std::cerr << "Unknown item type: " << type << "\n"; // Log unknown type
     return nullptr; // Return nullptr for unknown types

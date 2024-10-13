@@ -19,3 +19,17 @@ void Plant::display() const {
 int Plant::getSellPrice() const {
     return sellPrice;
 }
+
+// Serialize the plant to a file
+void Plant::serialize(std::ofstream& outFile) const {
+    outFile << "Plant " << name << " " << price << " " << sellPrice << "\n";
+}
+
+
+// Deserialize a plant from a file
+Plant* Plant::deserialize(std::ifstream& inFile) {
+    string name;
+    int buyPrice, sellPrice;
+    inFile >> name >> buyPrice >> sellPrice;
+    return new Plant(name, buyPrice, sellPrice);
+}

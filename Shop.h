@@ -1,10 +1,10 @@
 #ifndef SHOP_H
 #define SHOP_H
+#include "Inventory.h"
 
 //This class includes the mechanisms by which 
 //the player can buy items with their gold
 
-#include "Inventory.h"
 
 class Shop{
     private:
@@ -14,18 +14,15 @@ class Shop{
     // Constructor to initialize shop inventory
     Shop();
 
-
     // Destructor to clean up dynamically allocated items
     ~Shop();
 
-
     // Function to display available items in the shop
     void displayItems() const;
-
 
     // Function to buy an item from the shop
     bool buyItem(int choice, int& gold, Inventory& playerInventory);
 };
 
 
-#endif
+#endif //SHOP_H
