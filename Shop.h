@@ -1,10 +1,10 @@
 #ifndef SHOP_H
 #define SHOP_H
+#include "Inventory.h"
 
 //This class includes the mechanisms by which 
 //the player can buy items with their gold
 
-#include "Inventory.h"
 
 class Shop{
     private:
@@ -28,4 +28,4 @@ class Shop{
 };
 
 
-#endif
+#endif //SHOP_H

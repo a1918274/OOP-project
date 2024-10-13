@@ -6,7 +6,6 @@
 
 #include "Item.h"
 
-using namespace std;  // use std or not???s
 
 // this class contains information about the seed of a type of plant the player
 // can grow, including potato, snow pea and tomato seeds
@@ -19,7 +18,7 @@ class Plant;
 class Seed : public Item {
  public:
   // constructor to initialize a Seed object
-  Seed(const string& name, int price);
+  Seed(const std::string& name, int price);
 
   // displays the seed's details (override display method from Item class)
   void display() const override;

@@ -1,5 +1,5 @@
 #include "Seed.h"
-// include plant file here
+#include "Plant.h"
 
 #include <iostream>
 
@@ -17,13 +17,26 @@ void Seed::display() const {
 Plant* Seed::grow() const {
   // turn seed into plant and return plant pointer
   if (name == "Potato(Seeds)") {
-    // return potato plant
+    return new Plant("Potatoes", 4, 5);
   } else if (name == "Corn(Seeds)") {
-    // return corn plant
+    return new Plant("Corn", 8, 14);
   } else if (name == "Tomato(Seeds)") {
-    // return tomato plant
+    return new Plant("Tomatoes", 11, 22);
   }
 
   // return nullptr if no matching seed is found
   return nullptr;
+}
+
+//Serialize the seed to a file
+void Seed::serialize(std::ofstream& outFile) const {
+    outFile << "Seed " << name << " " << price << "\n";
+}
+
+// Deserialize a seed from a file
+Seed* Seed::deserialize(std::ifstream& inFile) {
+    string name;
+    int price;
+    inFile >> name >> price;
+    return new Seed(name, price);
 }
