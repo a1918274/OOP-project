@@ -25,6 +25,14 @@ class Seed : public Item {
 
   // growing the seed into a plant (Plant class)
   Plant* grow() const;
+
+  // serialize the seed to a file
+    void serialize(std::ofstream& outFile) const override;
+
+
+  // deserialize a seed from a file
+    static Seed* deserialize(std::ifstream& inFile);
 };
+
 
 #endif  // SEED_H
