@@ -1,13 +1,13 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-//Abstract class that contains the information about each ‘item’, specifically 
-//name and price (i.e. the name and price of either a crop or animal). 
-//The class also contains a pure virtual function for displaying item information.
-
 #include <iostream>
 #include <string>
 #include <fstream>
+
+//Abstract class that contains the information about each ‘item’, specifically 
+//name and price (i.e. the name and price of either a crop or animal). 
+//The class also contains a pure virtual function for displaying item information.
 
 class Item {
     protected: //The user should not be able to change the name or price of items
@@ -35,13 +35,6 @@ class Item {
 
     //Getter for item price
     int getPrice() const;
-
-    //Setter for item name
-    void setName(std::string name);
-
-    //Setter for item price
-    void setPrice(int price);
-
 
 };
 

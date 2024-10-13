@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 // Constructor to initialize a Plant object
 Plant::Plant(string n, int buyPrice, int sPrice)
     : Item(n, buyPrice), sellPrice(sPrice) {}
