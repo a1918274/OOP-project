@@ -13,7 +13,7 @@
 class YoungAnimal : public Animal {
  public:
   // constructor to initialise a YoungAnimal object
-  YoungAnimal(const std::string& n, int price, const std::string& t);
+  YoungAnimal(const std::string& n, int p, const std::string& t);
 
   // logic to grow the young animal into an adult animal
   // function to return grown animal: grow()
