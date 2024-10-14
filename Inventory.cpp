@@ -1,46 +1,54 @@
 #include "Inventory.h"
-#include <iostream>
+
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
-// Destructor to clean up dynamically allocated items
+// Constructor to initialize the inventory
+Inventory::Inventory() {
+  // Inventory initializes without items (items vector is empty)
+}
+
+// Destructor to clean up the inventory
 Inventory::~Inventory() {
-    clear(); // Ensure items are deleted when inventory is destroyed
+  clear();  // Reuse the clear method for clean up
+}
+
+// Getter: returns all items in the inventory
+const std::vector<Item*>& Inventory::getItems() const { return items; }
+
+// Displays all items in the inventory
+void Inventory::display() const {
+  if (items.empty()) {
+    cout << "\nYour inventory is empty.\n";
+    return;
+  }
+  cout << "\nInventory items:\n";
+  for (const auto& item : items) {
+    item->display();  // Call the display method of each item
+  }
 }
 
 // Adds an item to the inventory
 void Inventory::addItem(Item* item) {
-    items.push_back(item); // Store the item in the vector
+  items.push_back(item);  // Push the item into the vector
 }
 
 // Removes an item from the inventory
 void Inventory::removeItem(Item* item) {
-    items.erase(remove_if(items.begin(), items.end(),
-        [item](Item* i) { return i == item; }), items.end()); // Remove item by pointer
-}
-
-// Displays all items in the inventory
-void Inventory::display() const {
-    if (items.empty()) {
-        cout << "Your inventory is empty.\n";
-        return;
-    }
-    cout << "\nYour inventory:\n";
-    for (const auto& item : items) {
-        item->display(); // Call the display method of each item
-    }
-}
-
-// Returns a const reference to the vector of items in the inventory
-const vector<Item*>& Inventory::getItems() const {
-    return items;
+  auto it = std::find(items.begin(), items.end(), item);
+  if (it != items.end()) {
+    delete *it;       // Free memory for the item
+    items.erase(it);  // Remove the item from the vector
+  }
 }
 
 // Clears the inventory
 void Inventory::clear() {
-    for (auto item : items) {
-        delete item; // Delete each item to prevent memory leaks
-    }
-    items.clear(); // Clear the vector
+  // Free memory for each item
+  for (Item* item : items) {
+    delete item;
+  }
+  items.clear();  // Clear the vector
 }
