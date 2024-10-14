@@ -12,6 +12,7 @@
 class Weather {
 public:
     enum Type { SUNNY, RAIN, EARTHQUAKE };
+    // Sets each type of weather to 0, 1 and 2 respectively
 
 private:
     Type currentWeather;
