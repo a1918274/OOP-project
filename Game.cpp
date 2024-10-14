@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "ValidNumberCheck.h"
 #include "Seed.h"
 #include "YoungAnimal.h"
 #include "Plant.h"
@@ -48,6 +49,10 @@ void Game::buyItem() {
     cin >> input;
 
     // Validate input using the ValidNumberCheck class
+    if (!ValidNumberCheck::isValidNumber(input)) {
+        cout << "The shop keeper looks at you puzzled and advises that they don't have that.\n";
+        return;
+    }
 
     int choice = stoi(input);
     bool boughtDog = shop.buyItem(choice, gold, inventory);
@@ -189,6 +194,11 @@ void Game::play() {
     string choice;
     cin >> choice;
 
+    // Validate if the input is a valid number
+        if (!ValidNumberCheck::isValidNumber(choice)) {
+            cout << "Your brain looks at you puzzled and advises you to read the options again.\n";
+        }
+
     if (choice == "1") {
         buyItem();                  // Buy an item
     } else if (choice == "2") {
@@ -202,7 +212,7 @@ void Game::play() {
     } else if (choice == "9") {
         saveGame();                 // Save game
     } else if (choice == "0") {
-         cout << "MainMenu";                     // Return to main menu
+         cout << "MainMenu";        // Return to main menu
     } else {
         cout << "Invalid choice. Please try again.\n";
     }

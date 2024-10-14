@@ -15,6 +15,7 @@ public:
     // Sets each type of weather to 0, 1 and 2 respectively
 
 private:
+    // Stores the current weather type
     Type currentWeather;
 
 public:
@@ -26,7 +27,7 @@ public:
     void generateWeather();
 
 
-    // Get the current weather type
+    // Returns the current weather type
     Type getWeather() const;
 
 
@@ -34,12 +35,12 @@ public:
     void setWeather(Type weather);
 
 
-    // Get a formatted string for the current weather
+    // Returns a formatted string for the current weather
     std::string getWeatherString() const;
 
 
     // Apply the effects of the weather on the player's actions
-    void applyWeatherEffects(DayManager&dayManager);
+    void applyWeatherEffects(DayManager& dayManager);
 };
 
 #endif //WEATHER_H
