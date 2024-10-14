@@ -2,30 +2,38 @@
 #define INVENTORY_H
 
 #include <vector>
+
 #include "Item.h"
 
+// Inventory class contains a vector which stores the pointers to items in the
+// inventory for the farm
+
 class Inventory {
-private:
-    std::vector<Item*> items; // Vector to store pointers to items
+ private:
+  std::vector<Item*> items;  // Item stored in the inventory
 
-public:
-    // Destructor to clean up dynamically allocated items
-    ~Inventory();
+ public:
+  // Constructor to initialize the inventory
+  Inventory();
 
-    // Adds an item to the inventory
-    void addItem(Item* item);
+  // Destructor to clean up the inventory
+  ~Inventory();
 
-    // Removes an item from the inventory
-    void removeItem(Item* item);
+  // Getter
 
-    // Displays all items currently in the inventory
-    void display() const;
+  // Returns all items in the inventory
+  const std::vector<Item*>& getItems() const;
 
-    // Returns a const reference to the vector of items in the inventory
-    const std::vector<Item*>& getItems() const;
+  // Methods
 
-    // Clears the inventory
-    void clear();
+  // Displays all items currently in the inventory
+  void display() const;
+  // Adds an item to the inventory
+  void addItem(Item* item);
+  // Removes an item from the inventory
+  void removeItem(Item* item);
+  // Clears the inventory and frees memory
+  void clear();
 };
 
-#endif // INVENTORY_H
+#endif  // INVENTORY_H
