@@ -2,54 +2,42 @@
 #define ITEM_H
 
 #include <fstream>
-#include <iostream>
 #include <string>
 
 // Abstract class that contains the information about each ‘item’, specifically
 // name and price (i.e. the name and price of either a crop or animal).
 // Item class is the parent class for seed, plant, animal, dog
 
+// Abstract class representing an item in the game
 class Item {
- protected:
-  std::string name;  // Name of the item
-  int price;         // Price of the item
-  int itemCount;     // Count of the item
+protected:
+  std::string name; // Name of the item
+  int price;        // Price of the item
+  int itemCount;    // Count of the item
 
- public:
+public:
   // Constructor
+  Item(const std::string &n, int p, int count); // Initializes an item
 
-  // Initializes an item
-  Item(const std::string& n, int p, int count);
-
-  // Virtual Destructor
-  virtual ~Item();
+  // Destructor
+  virtual ~Item(); // Virtual destructor
 
   // Methods
-
-  // Pure virtual function for displaying item details
-  virtual void display() const = 0;
-  // Increments the item count
-  void incrementCount();
-  // Resets the item count to one
-  void resetItemCount();
+  virtual void display() const = 0; // Displays item details
+  void incrementCount();            // Increments the item count
+  void resetItemCount();            // Resets the item count to one
 
   // Getters
-
-  // Returns the item's name
-  std::string getName() const;
-  // Returns the item's price
-  int getPrice() const;
-  // Returns the item's count
-  int getItemCount() const;
+  std::string getName() const;      // Returns the item's name
+  int getPrice() const;             // Returns the item's price
+  int getItemCount() const;         // Returns the item's count
 
   // Setters
+  void setItemCount(int count);     // Sets the item's count
 
-  // Sets the item's count
-  void setItemCount(int count);
-
-  // serialize (override) and deserialize item to and from a file
-  virtual void serialize(std::ofstream& outFile) const = 0;
-  static Item* deserialize(std::ifstream& inFile);
+  // Serialization
+  virtual void serialize(std::ofstream &outFile) const = 0; // Serializes item to a file
+  static Item *deserialize(std::ifstream &inFile);          // Static method for deserialization
 };
 
-#endif  // ITEM_H
+#endif // ITEM_H
