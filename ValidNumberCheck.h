@@ -3,11 +3,14 @@
 
 #include <string>
 
-// This class provides utility functions for number validation
+// ValidNumberCheck class provides utility functions for number validation
+// check if the player's input is valid (is a positive integer between 0 and 9
+// inclusive)
+
 class ValidNumberCheck {
-public:
-    // Function to check if a string represents a valid positive integer
-    static bool isValidNumber(const std::string& input);
+ public:
+  // Static method to check if a string represents a valid positive integer
+  static bool isValidNumber(const std::string& input);
 };
 
-#endif // VALIDNUMBERCHECK_H
+#endif  // VALIDNUMBERCHECK_H
