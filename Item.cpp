@@ -30,8 +30,8 @@ int Item::getItemCount() const { return itemCount; }
 // Set the item's count
 void Item::setItemCount(int count) {
   if (count < 0) {
-    cout << "Invalid count. Count must be a positive number. Count is now zero."
-         << endl;
+    cout << "Invalid count. Count must be a positive number. Count is now zero.";
+    cout << endl;
     count = 0;
   } else {
     itemCount = count;
