@@ -61,8 +61,8 @@ run: $(TARGET)
 	./$(TARGET)
 
 # source files for testing (include all *.cpp afterwards - couldnt compile now)
-SOURCE = TestDayManager.h DayManager.cpp TestValidNumberCheck.h ValidNumberCheck.cpp
-
+SOURCE_HEADER = TestDayManager.h TestValidNumberCheck.h TestMainMenu.h
+SOURCE_CPP = DayManager.cpp ValidNumberCheck.cpp MainMenu.h
 # target to run the main testing file with normal flags
 test: $(SOURCE)
 	@g++ -Wall -Wextra -std=c++11 test.cpp $(SOURCE) -o test
