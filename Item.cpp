@@ -45,7 +45,7 @@ void Item::incrementCount() { itemCount++; }
 void Item::resetItemCount() { itemCount = 1; }
 
 // Log error messages to standard error
-void logError(const string& message) { cerr << message << "\n"; }
+void logError(const string& message) { std::cerr << message << "\n"; }
 
 // Deserialize an item from a file based on its type
 Item* Item::deserialize(std::ifstream& inFile) {
