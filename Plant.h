@@ -15,7 +15,7 @@ private:
 
 public:
     // Constructor to initialize a Plant object
-    Plant(std::string n, int buyPrice, int sPrice);
+    Plant(const std::string n, int buyPrice, int sPrice);
 
     // Displays the plant's name and sell price
     void display() const override;
@@ -25,7 +25,6 @@ public:
 
     // Serialize the plant to a file
     void serialize(std::ofstream& outFile) const override;
-
 
     // Deserialize a plant from a file
     static Plant* deserialize(std::ifstream& inFile);
