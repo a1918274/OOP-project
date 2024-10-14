@@ -11,16 +11,16 @@
 using namespace std;
 
 // Constructor to initialize game state
-Game::Game() : gold(20), dayManager(3), shop(), {
-    weather.generateWeather();      // Initialize the weather
+Game::Game() : gold(20), dayManager(3), shop(), weather() {
+    weather.generateWeather(); // Initialize the weather
 }
 
 // Initializes a new game
 void Game::initializeGame() {
-    gold = 20;                      // Reset gold
-    dayManager.reset();             // Reset day manager
-    inventory.clear();              // Clear inventory
-    weather.generateWeather();      // Generate initial weather
+    gold = 20; // Reset gold
+    dayManager.reset(); // Reset day manager
+    inventory.clear(); // Clear inventory
+    weather.generateWeather(); // Generate initial weather
 }
 
 // Displays the menu with available actions
@@ -170,50 +170,117 @@ void Game::sleep() {
         }
     }
 
-// Call Actions too
-
+    dayManager.resetActions(3);                 // Reset actions for the new day
+    dayManager.nextDay();                       // Advance to the next day
     weather.generateWeather();                  // Generate new weather for the new day
     weather.applyWeatherEffects(dayManager);    // Apply weather effects for the new day
 }
 
 // Save the game state
 void Game::saveGame() {
-    cout << "You have saved the game";
+    std::ofstream outFile("Savegame.txt");
+    if (!outFile) {
+        cout << "Error saving game.\n";
+        return;
+    }
+
+    // Save game state
+    outFile << gold << "\n";
+    outFile << dayManager.getDay() << "\n";
+    outFile << dayManager.getActions() << "\n";
+
+    // Save weather as an integer (casting enum to int)
+    outFile << static_cast<int>(weather.getWeather()) << "\n";
+
+    //Save inventory items
+    outFile << inventory.getItems().size() << "\n"; // Number of items
+    for (auto item: inventory.getItems()) {
+        item->serialize(outFile); // Serialize each item
+    }
+
+    outFile.close();
+    cout << "Game state saved.\n";
 }
 
 // Load the game state
 void Game::loadGame() {
-    cout << "You have loaded the game";
+    ifstream inFile("savegame.txt");
+    if (!inFile) {
+        cout << "Error loading game. No saved file found.\n";
+        return;
+    }
+
+    // Load game state
+    inFile >> gold;
+    int day, actions;
+    inFile >> day >> actions;
+
+    dayManager.setDay(day); // Set the loaded day
+    dayManager.resetActions(actions); // Set the loaded actions
+
+    // Load weather as an integer and cast it to the enum type
+    int weatherType;
+    inFile >> weatherType;
+    weather.setWeather(static_cast<Weather::Type>(weatherType)); // Cast back to enum
+
+    // Clear existing inventory to prevent duplicates
+    inventory.clear();
+
+    // Load inventory items
+    size_t itemCount;
+    inFile >> itemCount;
+    for (size_t i = 0; i < itemCount; ++i) {
+        Item* item = Item::deserialize(inFile); // Deserialize item based on type
+        if (item) {
+            inventory.addItem(item);
+        }
+    }
+
+    inFile.close();
+    cout << "Game state loaded.\n";
 }
 
 // Main game loop
 void Game::play() {
-    // Display the menu to the player
-    displayMenu(); 
-
-    string choice;
-    cin >> choice;
-
-    // Validate if the input is a valid number
-        if (!ValidNumberCheck::isValidNumber(choice)) {
-            cout << "Your brain looks at you puzzled and advises you to read the options again.\n";
+    while (true) {
+        // Check if actions are exhausted
+        if (dayManager.getActions() <= 0) {
+            cout << "You've worked hard and decided to call it a night!\n";
+            dayManager.nextDay();
+            dayManager.resetActions(3);
+            weather.generateWeather(); // Generate new weather for the new day
+            weather.applyWeatherEffects(dayManager); // Apply weather effects at the start of the new day
+            continue; // Restart the loop for the new day
         }
 
-    if (choice == "1") {
-        buyItem();                  // Buy an item
-    } else if (choice == "2") {
-        tendToItems();              // Tend to items in inventory
-    } else if (choice == "3") {
-        sellItems();                // Sell items in inventory
-    } else if (choice == "4") {
-        displayInventory();         // Show player's inventory
-    } else if (choice == "5") {
-        sleep();                    // End the day
-    } else if (choice == "9") {
-        saveGame();                 // Save game
-    } else if (choice == "0") {
-         cout << "MainMenu";        // Return to main menu
-    } else {
-        cout << "Invalid choice. Please try again.\n";
+        // Display the menu to the player
+        displayMenu();
+
+        string choice;
+        cin >> choice;
+
+        // Validate if the input is a valid number
+        if (!ValidNumberCheck::isValidNumber(choice)) {
+            cout << "Your brain looks at you puzzled and advises you to read the options again.\n";
+            continue; // Restart the loop for valid input
+        }
+
+        if (choice == "1") {
+            buyItem();                  // Buy an item
+        } else if (choice == "2") {
+            tendToItems();              // Tend to items in inventory
+        } else if (choice == "3") {
+            sellItems();                // Sell items in inventory
+        } else if (choice == "4") {
+            displayInventory();         // Show player's inventory
+        } else if (choice == "5") {
+            sleep();                    // End the day
+        } else if (choice == "9") {
+            saveGame();                 // Save game
+        } else if (choice == "0") {
+            return; // Return to main menu
+        } else {
+            cout << "Invalid choice. Please try again.\n";
+        }
     }
 }

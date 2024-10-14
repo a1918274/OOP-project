@@ -3,19 +3,16 @@
 
 #include "Game.h" // Include the Game class
 
+// Class representing the main menu for the game
 class MainMenu {
 private:
     Game* game; // Pointer to the Game instance
 
 public:
-    // Constructor
-    MainMenu(Game* gameInstance);
+    MainMenu(Game* gameInstance);       // Constructor
 
-    // Display the main menu
-    void displayMenu();
-
-    // Handle menu selection
-    void handleSelection(int choice);
+    void displayMenu();                 // Displays the main menu
+    void handleSelection(int choice);   // Handles menu selection
 };
 
 #endif // MAINMENU_H

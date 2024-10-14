@@ -3,19 +3,20 @@
 #include <iostream>
 #include <ctime>
 
-
 using namespace std;
 
 // Constructor to initialize random seed
 Weather::Weather() {
-    std::srand(static_cast<unsigned int>(std::time(nullptr))); // Seed for randomness
-    generateWeather(); // Generate initial weather
+    // Seed for random generation
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    // Generate initial weather
+    generateWeather();
 }
 
 // Generate weather for the day based on probabilities
 void Weather::generateWeather() {
-    int chance = std::rand() % 100; // Generate a random number between 0 and 99
-
+    // Generate a random number between 0 and 99
+    int chance = std::rand() % 100; 
 
     if (chance < 75) {
         currentWeather = SUNNY; // 75% chance
@@ -27,17 +28,15 @@ void Weather::generateWeather() {
 }
 
 
-// Get the current weather type
+// Return the current weather type
 Weather::Type Weather::getWeather() const {
-    return currentWeather; // Return the current weather type
+    return currentWeather;
 }
-
 
 // Set the current weather type
 void Weather::setWeather(Type weather) {
     currentWeather = weather;
 }
-
 
 // Get a string representation of the current weather
 std::string Weather::getWeatherString() const {
@@ -49,11 +48,9 @@ std::string Weather::getWeatherString() const {
     }
 }
 
-
 // Apply the effects of the weather on the player's actions
 void Weather::applyWeatherEffects(DayManager &dayManager) {
     int actions = dayManager.getActions(); // Get the current actions
-
 
     switch (currentWeather) {
         case SUNNY:
@@ -70,12 +67,10 @@ void Weather::applyWeatherEffects(DayManager &dayManager) {
             break;
     }
 
-
     // Ensure actions do not go below zero
     if (actions < 0) {
         actions = 0;
     }
-
 
     dayManager.setActions(actions); // Update the action count back to DayManager
 }

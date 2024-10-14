@@ -20,7 +20,8 @@ class Shop{
     // Function to display available items in the shop
     void displayItems() const;
 
-    // Function to buy an item from the shop
+    // Function that allows a player to buy an item from the shop, deducts 
+    // their gold accordingly, and adds the item to the player's inventory
     bool buyItem(int choice, int& gold, Inventory& playerInventory);
 };
 
