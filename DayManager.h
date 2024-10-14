@@ -7,24 +7,35 @@
 
 class DayManager {
  private:
-  int currentActions;  // Actions available to the player
+  int currentActions;  // Number of actions available to the player
   int currentDay;      // Current day in the game
 
  public:
-  // Constructor to initialize actions and day
+  // Constructor to initialize the day with a set number of actions
   DayManager(int initialActions);
 
-  // Get the current number of actions
+  // Getters
+
+  // Returns the current number of actions
   int getActions() const;
-
-  // Set the current number of actions
-  void setActions(int actions);
-
-  // Get the current day
+  // Returns the current day
   int getDay() const;
 
+  // Setters
+
+  // Set the number of actions
+  void setActions(int actions);
   // Set the current day
   void setDay(int day);
+
+  // Methods
+
+  // Moves to the next day
+  void nextDay();
+  // Decreases the number of available actions by one
+  void performAction();
+  // Resets both day and actions to default values
+  void reset();
 };
 
-#endif
+#endif  // DAYMANAGER_H
