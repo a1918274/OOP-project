@@ -4,51 +4,59 @@
 
 using namespace std;
 
-// constructor to initialize a GrownAnimal object
+// Constructor to initialize a GrownAnimal object
 GrownAnimal::GrownAnimal(const std::string& n, int p, const std::string& t,
                          int value)
     : Animal(n, p, t), produceType(t), produceValue(value), produceCount(0) {}
 
-// display the grown animal's details including produce count (override)
+// Display the grown animal's details with item count in boxes (override)
 void GrownAnimal::display() const {
-  cout << "Grown Animal: " << name << ", Price: " << price
-       << " gold (Produce: " << produceType
-       << ", Produce count: " << produceCount << " )\n";
+  cout << "[ " << getItemCount() << "x ] " << "Grown Animal: " << getName()
+       << ", Price: " << getPrice() << " gold (Produce: " << produceType
+       << ", Produce count: " << getProduceCount() << " )\n";
 }
 
-// generate produce and updates the count
-void GrownAnimal::produceItem() {
-  produceCount++;  // increment the produce count each time produce item is
-                   // called
-}
+// Generates produce and updates the count
+void GrownAnimal::produceItem() { produceCount++; }
 
-// gets the current produce count
+// Gets the current produce count
 int GrownAnimal::getProduceCount() const { return produceCount; }
 
-// clears the produce count
-void GrownAnimal::clearProduce() {
-  produceCount = 0;  // resets the produce count after selling
-}
+// Clears the produce count
+void GrownAnimal::clearProduce() { produceCount = 0; }
 
-// gets the produce value
-int GrownAnimal::getProduceValue() const {
-  return produceValue;  // return the value of the produce
+// Gets the produce value
+int GrownAnimal::getProduceValue() const { return produceValue; }
+
+// Set the produce count
+void GrownAnimal::setProduceCount(int count) {
+  if (count < 0) {
+    cout << "Invalid count. Count must be a positive number.\n";
+  } else {
+    produceCount = count;
+  }
 }
 
 // serialize (override) and deserialize the grown animal to and from a file
 void GrownAnimal::serialize(std::ofstream& outFile) const {
-  outFile << "GrownAnimal: " << name << " " << price << " " << produceType
-          << " " << produceValue << " " << produceCount << "\n";
+  outFile << "GrownAnimal: " << getName() << " " << getPrice() << " "
+          << produceType << " " << getProduceValue() << " " << getProduceCount()
+          << " " << getItemCount() << "\n";
 }
 
 GrownAnimal* GrownAnimal::deserialize(std::ifstream& inFile) {
   string name, produceType;
-  int price, produceValue, produceCount;
+  int price, produceValue, produceCount, count;
 
-  inFile >> name >> price >> produceType >> produceValue >> produceCount;
+  // Error checking while reading from the file
+  if (!(inFile >> name >> price >> produceType >> produceValue >>
+        produceCount >> count)) {
+    cerr << "Error reading grown animal data from file." << endl;
+    return nullptr;
+  }
 
   GrownAnimal* animal = new GrownAnimal(name, price, produceType, produceValue);
-  animal->produceCount = produceCount; // set the produce count directly
-  
+  animal->setProduceCount(produceCount);
+  animal->setItemCount(count);
   return animal;
 }
