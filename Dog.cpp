@@ -9,7 +9,7 @@ Dog::Dog(const string& name, int price) : Item(name, price, 1) {}
 
 // Implementing the pure virtual function to display item details
 void Dog::display() const {
-     cout << "[ " << getItemCount() << "x ] "
+    cout << "[ " << getItemCount() << "x ] "
          << "Dog: " << getName()
          << " (" << getPrice() << " gold)\n";
 }

@@ -10,17 +10,15 @@
 
 class Dog : public Item {
 public:
-    // Constructor to initialize Dog with a name and price
-    Dog(const std::string& name, int price);
+    // Constructor
+    Dog(const std::string& name, int price);                // Initializes a dog object with a name and price
 
-    // Implementing pure virtual function to display item details
-    void display() const override;
+    // Methods
+    void display() const override;                          // Displays item details
 
-    // Implementing the serialize method
-    void serialize(std::ofstream& outFile) const override;
-
-    // Static method for deserialization
-    static Dog* deserialize(std::ifstream& inFile);
+    // Serialization
+    void serialize(std::ofstream& outFile) const override;  // Serializes the dog object
+    static Dog* deserialize(std::ifstream& inFile);         // Deserializes a dog object
 };
 
 #endif // DOG_H

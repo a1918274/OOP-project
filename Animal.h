@@ -11,11 +11,11 @@
 // Class representing an animal that inherits from Item
 class Animal : public Item {
 protected:
-  std::string type;                 // Animal type
+  std::string type;   // Animal type
 
 public:
   // Constructor
-  Animal(const std::string& n, int p, const std::string& t);  // Initializes an Animal object
+  Animal(const std::string& n, int p, const std::string& t);  // Initializes an Animal object with a name, price and type
 
   // Getter
   std::string getType() const;                                // Returns the type of the animal
