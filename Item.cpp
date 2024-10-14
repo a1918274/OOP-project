@@ -1,52 +1,72 @@
 #include "Item.h"
-#include "Seed.h"
-#include "Plant.h"
-#include "YoungAnimal.h"
-#include "GrownAnimal.h"
+
 #include <fstream>
-#include <string>
 #include <iostream>
+#include <string>
 
-//Constructor
-Item::Item(const std::string& n, int p) : name(n), price(p){}; 
+#include "GrownAnimal.h"
+#include "Plant.h"
+#include "Seed.h"
+#include "YoungAnimal.h"
 
-//Virtual destructor to properly clean up derived classes
-Item::~Item() = default; 
+using namespace std;
 
-//Getter for item name
-std::string Item::getName() const{ return name; };
+// Constructor to initialize name, price, and item count
+Item::Item(const string& n, int p, int count)
+    : name(n), price(p), itemCount(count) {};
 
-//Getter for item price
+// Virtual destructor to properly clean up derived classes
+Item::~Item() = default;
+
+// Getter for item's name
+string Item::getName() const { return name; };
+
+// Getter for item's price
 int Item::getPrice() const { return price; };
 
+// Getter for item's count
+int Item::getItemCount() const { return itemCount; }
 
-//Static method to deserialize an item from a file
-Item* Item::deserialize(std::ifstream& inFile) {
-    std::string type;
-    inFile >> type; // Read the type of item
+// Set the item's count
+void Item::setItemCount(int count) {
+  if (count < 0) {
+    cout << "Invalid count. Count must be a positive number. Count is now zero."
+         << endl;
+    count = 0;
+  } else {
+    itemCount = count;
+  }
+}
 
+// Increment the item count
+void Item::incrementCount() { itemCount++; }
 
-    std::cout << "Type read: " << type << std::endl; // Debug output
+// Reset the item count to one
+void Item::resetItemCount() { itemCount = 1; }
 
+// Log error messages to standard error
+void logError(const string& message) { cerr << message << "\n"; }
 
-    if (inFile.fail()) {
-        std::cerr << "Error reading item type from file.\n";
-        return nullptr; // Handle error
-    }
+// Deserialize an item from a file based on its type
+Item* Item::deserialize(ifstream& inFile) {
+  string type;
+  inFile >> type;  // Read the type of item
 
+  if (inFile.fail()) {
+    logError("Error reading item type from file.");
+    return nullptr;
+  }
 
-    if (type == "Seed") {
-        return Seed::deserialize(inFile);
-    } else if (type == "Plant") {
-        return Plant::deserialize(inFile);
-    } else if (type == "YoungAnimal") {
-          return YoungAnimal::deserialize(inFile);
-    } else if (type == "GrownAnimal") {
-        return GrownAnimal::deserialize(inFile);
-    }
+  if (type == "Seed") {
+    return Seed::deserialize(inFile);
+  } else if (type == "Plant") {
+    return Plant::deserialize(inFile);
+  } else if (type == "YoungAnimal") {
+    return YoungAnimal::deserialize(inFile);
+  } else if (type == "GrownAnimal") {
+    return GrownAnimal::deserialize(inFile);
+  }
 
-    std::cerr << "Unknown item type: " << type << "\n"; // Log unknown type
-    return nullptr; // Return nullptr for unknown types
-
-
+  logError("Unknown item type: " + type);
+  return nullptr;
 };

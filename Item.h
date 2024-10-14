@@ -7,35 +7,49 @@
 
 // Abstract class that contains the information about each ‘item’, specifically
 // name and price (i.e. the name and price of either a crop or animal).
-// The class also contains a pure virtual function for displaying item
-// information.
+// Item class is the parent class for seed, plant, animal, dog
 
 class Item {
- protected:  // The user should not be able to change the name or price of items
-  std::string name;  // The name of the item
-  int price;         // The price of the item
+ protected:
+  std::string name;  // Name of the item
+  int price;         // Price of the item
+  int itemCount;     // Count of the item
 
  public:
   // Constructor
-  Item(const std::string& n, int p);
+
+  // Initializes an item
+  Item(const std::string& n, int p, int count);
 
   // Virtual Destructor
   virtual ~Item();
 
-  // Pure virtual item for displaying item details
+  // Methods
+
+  // Pure virtual function for displaying item details
   virtual void display() const = 0;
+  // Increments the item count
+  void incrementCount();
+  // Resets the item count to one
+  void resetItemCount();
 
-  // Pure virtual function for serialization
-  virtual void serialize(std::ofstream& outFile) const = 0;
+  // Getters
 
-  // Static method for deserialization
-  static Item* deserialize(std::ifstream& inFile);
-
-  // Getter for item name
+  // Returns the item's name
   std::string getName() const;
-
-  // Getter for item price
+  // Returns the item's price
   int getPrice() const;
+  // Returns the item's count
+  int getItemCount() const;
+
+  // Setters
+
+  // Sets the item's count
+  void setItemCount(int count);
+
+  // serialize (override) and deserialize item to and from a file
+  virtual void serialize(std::ofstream& outFile) const = 0;
+  static Item* deserialize(std::ifstream& inFile);
 };
 
 #endif  // ITEM_H
