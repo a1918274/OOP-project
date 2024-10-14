@@ -3,6 +3,7 @@
 #include "TestDayManager.h"
 #include "TestMainMenu.h"
 #include "TestValidNumberCheck.h"
+#include "TestWeather.h"
 
 int main() {
   //   TestDayManager testDayManger;
@@ -13,6 +14,9 @@ int main() {
 
   TestMainMenu testMainMenu;
   testMainMenu.runTests();
+
+  TestWeather testWeather;
+  testWeather.runTests();
 
   return 0;
 }
