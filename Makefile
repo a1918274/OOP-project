@@ -54,7 +54,7 @@ release:
 
 # target to clean up object files and executable files
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f *.o $(TARGET)
 
 # target to run executable target
 run: $(TARGET)
@@ -62,12 +62,12 @@ run: $(TARGET)
 
 # source files for testing (include all *.cpp afterwards - couldnt compile now)
 SOURCE = TestDayManager.h DayManager.cpp
+
 # target to run the main testing file with normal flags
 test: $(SOURCE)
-	g++ -Wall -Wextra -std=c++11 test.cpp $(SOURCE) -o test
-	./test
+	@g++ -Wall -Wextra -std=c++11 test.cpp $(SOURCE) -o test
+	@./test
+	@rm -f test
 
 # PHONY targets to avoid conflicts with files
-.PHONY: all debug release clean run
-
-# testing here
+.PHONY: all debug release clean run test
