@@ -24,13 +24,13 @@ endif
 TARGET = legendaryGame
 
 # source files
-SRCS = *.cpp
+SRCS = Main.cpp Animal.cpp DayManager.cpp Dog.cpp Game.cpp GrownAnimal.cpp Inventory.cpp Item.cpp MainMenu.cpp Plant.cpp Seed.cpp Shop.cpp ValidNumberCheck.cpp Weather.cpp YoungAnimal.cpp
 
 # object files
 OBJS = $(SRCS:.cpp = .o)
 
 # header files
-HEADERS = *.h
+HEADERS = Animal.h DayManager.h Dog.h Game.h GrownAnimal.h Inventory.h Item.h MainMenu.h Plant.h Seed.h Shop.h ValidNumberCheck.h Weather.h YoungAnimal.h
 
 # target to build the program
 all: $(TARGET)
