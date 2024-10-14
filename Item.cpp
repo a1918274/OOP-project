@@ -15,7 +15,7 @@ using namespace std;
 Item::Item(const string& n, int p, int count)
     : name(n), price(p), itemCount(count) {};
 
-// Virtual destructor to properly clean up derived classes
+// Virtual destructor to proper clean up derived classes
 Item::~Item() = default;
 
 // Getter for item's name
@@ -48,7 +48,7 @@ void Item::resetItemCount() { itemCount = 1; }
 void logError(const string& message) { cerr << message << "\n"; }
 
 // Deserialize an item from a file based on its type
-Item* Item::deserialize(ifstream& inFile) {
+Item* Item::deserialize(std::ifstream& inFile) {
   string type;
   inFile >> type;  // Read the type of item
 
