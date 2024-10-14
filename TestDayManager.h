@@ -11,6 +11,7 @@ using namespace std;
 class TestDayManager {
  public:
   void runTests() {
+    cout << "\n Start testing for DayManager:\n";
     testGetActions();
     testSetActions();
     testGetDay();
@@ -18,6 +19,7 @@ class TestDayManager {
     testNextDay();
     testPerformAction();
     testReset();
+    cout << "\n Finished testing for DayManager!\n";
   }
 
  private:
