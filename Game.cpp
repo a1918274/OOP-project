@@ -11,7 +11,7 @@ using namespace std;
 
 // Constructor to initialize game state
 Game::Game() : gold(20), dayManager(3), shop(), {
-
+    weather.generateWeather();      // Initialize the weather
 }
 
 // Initializes a new game
@@ -24,6 +24,7 @@ void Game::initializeGame() {
 
 // Displays the menu with available actions
 void Game::displayMenu() {
+    string weatherString = weather.getWeatherString(); // Fetch formatted weather string
 
     cout << "_____________________________________\n\n\n";
     cout << "[ Day: " << dayManager.getDay();
@@ -164,8 +165,10 @@ void Game::sleep() {
         }
     }
 
-// Call Weather and Day manager here
+// Call Actions too
 
+    weather.generateWeather();                  // Generate new weather for the new day
+    weather.applyWeatherEffects(dayManager);    // Apply weather effects for the new day
 }
 
 // Save the game state
