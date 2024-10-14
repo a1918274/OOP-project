@@ -1,14 +1,14 @@
 #ifndef GROWNANIMAL_H
 #define GROWNANIMAL_H
 
-// this class inherits from animal and contains information about a type of
-// grown animal the player can tend to and sell the product of the grown animal
-// for gold
-
-#include <Animal.h>
-
 #include <fstream>
 #include <string>
+
+#include "Animal.h"
+
+// GrownAnimal class inherits from animal and contains information about a type
+// of grown animal the player can tend to and sell the product of the grown
+// animal for gold
 
 class GrownAnimal : public Animal {
  private:
@@ -17,27 +17,37 @@ class GrownAnimal : public Animal {
   int produceCount;         // Current produce count
 
  public:
-    // constructor to initialize a GrownAnimal object
-    GrownAnimal(const std::string& n, int p, const std::string& t, int value);
+  // Constructor to initialize a GrownAnimal object
+  GrownAnimal(const std::string& n, int p, const std::string& t, int value);
 
-    // display the grown animal's details including produce count (override)
-    void display() const override;
+  // Getters
 
-    // generate produce and updates the count
-    void produceItem();
+  // Returns the current produce count
+  int getProduceCount() const;
+  // Returns the value of the produce
+  int getProduceValue() const;
 
-    // gets the current produce count
-    int getProduceCount() const;
+  // Setter
 
-    // clears the produce count
-    void clearProduce();
+  // Sets the current produce count
+  void setProduceCount(int count);
 
-    // gets the produce value
-    int getProduceValue() const;
+  // Methods
 
-    // serialize (override) and deserialize the grown animal to and from a file
-    void serialize(std::ofstream& outFile) const override;
-    static GrownAnimal* deserialize(std::ifstream& inFile);
+  // Generates produce and updates the count
+  void produceItem();
+  // Clears the produce count
+  void clearProduce();
+
+  // File operations
+
+  // Serializes the grown animal to a file
+  void serialize(std::ofstream& outFile) const override;
+  // Deserializes a grown animal from a file
+  static GrownAnimal* deserialize(std::ifstream& inFile);
+
+  // Display the grown animal's details including produce count (override)
+  void display() const override;
 };
 
 #endif  // GROWNANIMAL_H
