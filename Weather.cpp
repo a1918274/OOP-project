@@ -3,7 +3,6 @@
 #include <iostream>
 #include <ctime>
 
-
 using namespace std;
 
 // Constructor to initialize random seed
@@ -34,12 +33,10 @@ Weather::Type Weather::getWeather() const {
     return currentWeather;
 }
 
-
 // Set the current weather type
 void Weather::setWeather(Type weather) {
     currentWeather = weather;
 }
-
 
 // Get a string representation of the current weather
 std::string Weather::getWeatherString() const {
@@ -51,11 +48,9 @@ std::string Weather::getWeatherString() const {
     }
 }
 
-
 // Apply the effects of the weather on the player's actions
 void Weather::applyWeatherEffects(DayManager &dayManager) {
     int actions = dayManager.getActions(); // Get the current actions
-
 
     switch (currentWeather) {
         case SUNNY:
@@ -72,12 +67,10 @@ void Weather::applyWeatherEffects(DayManager &dayManager) {
             break;
     }
 
-
     // Ensure actions do not go below zero
     if (actions < 0) {
         actions = 0;
     }
-
 
     dayManager.setActions(actions); // Update the action count back to DayManager
 }
