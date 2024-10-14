@@ -2,7 +2,7 @@
 
 // constructor to initialize an animal object with name, price and type
 Animal::Animal(const std::string& n, int p, const std::string& t)
-    : Item(n, p), type(t) {}
+    : Item(n, p, 1), type(t) {}
 
 // getter for the type
 std::string Animal::getType() const {
