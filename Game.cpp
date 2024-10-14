@@ -11,16 +11,16 @@
 using namespace std;
 
 // Constructor to initialize game state
-Game::Game() : gold(20), dayManager(3), shop(), {
-    weather.generateWeather();      // Initialize the weather
+Game::Game() : gold(20), dayManager(3), shop(), weather() {
+    weather.generateWeather(); // Initialize the weather
 }
 
 // Initializes a new game
 void Game::initializeGame() {
-    gold = 20;                      // Reset gold
-    dayManager.reset();             // Reset day manager
-    inventory.clear();              // Clear inventory
-    weather.generateWeather();      // Generate initial weather
+    gold = 20; // Reset gold
+    dayManager.reset(); // Reset day manager
+    inventory.clear(); // Clear inventory
+    weather.generateWeather(); // Generate initial weather
 }
 
 // Displays the menu with available actions
@@ -178,12 +178,66 @@ void Game::sleep() {
 
 // Save the game state
 void Game::saveGame() {
-    cout << "You have saved the game";
+    std::ofstream outFile("Savegame.txt");
+    if (!outFile) {
+        cout << "Error saving game.\n";
+        return;
+    }
+
+    // Save game state
+    outFile << gold << "\n";
+    outFile << dayManager.getDay() << "\n";
+    outFile << dayManager.getActions() << "\n";
+
+    // Save weather as an integer (casting enum to int)
+    outFile << static_cast<int>(weather.getWeather()) << "\n";
+
+    //Save inventory items
+    outFile << inventory.getItems().size() << "\n"; // Number of items
+    for (auto item: inventory.getItems()) {
+        item->serialize(outFile); // Serialize each item
+    }
+
+    outFile.close();
+    cout << "Game state saved.\n";
 }
 
 // Load the game state
 void Game::loadGame() {
-    cout << "You have loaded the game";
+    ifstream inFile("savegame.txt");
+    if (!inFile) {
+        cout << "Error loading game. No saved file found.\n";
+        return;
+    }
+
+    // Load game state
+    inFile >> gold;
+    int day, actions;
+    inFile >> day >> actions;
+
+    dayManager.setDay(day); // Set the loaded day
+    dayManager.resetActions(actions); // Set the loaded actions
+
+    // Load weather as an integer and cast it to the enum type
+    int weatherType;
+    inFile >> weatherType;
+    weather.setWeather(static_cast<Weather::Type>(weatherType)); // Cast back to enum
+
+    // Clear existing inventory to prevent duplicates
+    inventory.clear();
+
+    // Load inventory items
+    size_t itemCount;
+    inFile >> itemCount;
+    for (size_t i = 0; i < itemCount; ++i) {
+        Item* item = Item::deserialize(inFile); // Deserialize item based on type
+        if (item) {
+            inventory.addItem(item);
+        }
+    }
+
+    inFile.close();
+    cout << "Game state loaded.\n";
 }
 
 // Main game loop
