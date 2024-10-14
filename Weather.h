@@ -12,34 +12,27 @@
 
 class Weather {
  public:
-  // Sets each type of weather to 0, 1 and 2 respectively
-  enum Type { SUNNY, RAIN, EARTHQUAKE };
+  enum Type { SUNNY, RAIN, EARTHQUAKE };  // Sets each type of weather to 0, 1 and 2 respectively
 
  private:
-  // Stores the current weather type
-  Type currentWeather;
+  Type currentWeather;  // Stores the current weather type
 
  public:
-  // Constructor to initialize the weather
-  Weather();
+  // Constructor
+  Weather();            // Initializes the weather
 
   // Getters
-  // Returns the current weather type
-  Type getWeather() const;
-  // Returns a formatted string representing the current weather
-  std::string getWeatherString() const;
+  Type getWeather() const;                // Returns the current weather type
+  std::string getWeatherString() const;   // Returns a formatted string representing the current weather
 
   // Setter
-  // Sets the current weather type
-  void setWeather(Type weather);
+  void setWeather(Type weather);          // Sets the current weather type
 
   // Methods
-  // Determines weather at the start of each day
-  void generateWeather();
+  void generateWeather();                 // Determines weather at the start of each day
 
   // Effect on Gameplay
-  // Applies the effects of the current weather on the player's actions
-  void applyWeatherEffects(DayManager& dayManager);
+  void applyWeatherEffects(DayManager& dayManager); // Applies the effects of the current weather on the player's actions
 };
 
 #endif  // WEATHER_H

@@ -13,25 +13,18 @@
 class YoungAnimal : public Animal {
  public:
   // Constructor
+  YoungAnimal(const std::string& n, int p, const std::string& t); // Initialise a YoungAnimal object
 
-  // Initialise a YoungAnimal object
-  YoungAnimal(const std::string& n, int p, const std::string& t);
-
-  // Getters
-
-  // Returns the type of grown animal corresponding to the young animal
-  std::string getGrownAnimalType() const;
+  // Getters 
+  std::string getGrownAnimalType() const;   // Returns the type of grown animal corresponding to the young animal
 
   // Methods
+  GrownAnimal* grow();                      // Logic to grow the young animal into an adult animal
+  void display() const override;            // Displays the young animal's details (override)
 
-  // Logic to grow the young animal into an adult animal
-  GrownAnimal* grow();
-  // displays the young animal's details (override)
-  void display() const override;
-
-  // serialize (override) and deserialize young animal to and from a file
-  void serialize(std::ofstream& outFile) const override;
-  static YoungAnimal* deserialize(std::ifstream& inFile);
+  // Serialization
+  void serialize(std::ofstream& outFile) const override;    // Serializes the young animal to a file (for saving)
+  static YoungAnimal* deserialize(std::ifstream& inFile);   // Deserializes a young animal from a file (for loading)
 };
 
 #endif  // YOUNGANIMAL_H

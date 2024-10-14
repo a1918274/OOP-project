@@ -8,27 +8,24 @@
 //This class contains information about a type of plant the 
 //player can grow (potato, corn, or tomato).
 
+// Class representing a plant that can be sold
 class Plant: public Item{
 private:
-    int sellPrice; // The selling price of the plant
-
+    int sellPrice;  // The selling price of the plant
 
 public:
-    // Constructor to initialize a Plant object
-    Plant(const std::string n, int buyPrice, int sPrice);
+    // Constructor
+    Plant(const std::string n, int buyPrice, int sPrice);   // Initializes a Plant object with a name, buy price, and sell price
 
-    // Displays the plant's name and sell price
-    void display() const override;
+    // Methods
+    void display() const override;                          // Displays the plant's name and sell price
 
-    // Returns the sell price of the plant
-    int getSellPrice() const;
+    // Getters
+    int getSellPrice() const;                               // Returns the sell price of the plant
 
-    // Serialize the plant to a file (for saving)
-    void serialize(std::ofstream& outFile) const override;
-
-    // Deserialize a plant from a file (for loading)
-    static Plant* deserialize(std::ifstream& inFile);
+    // Serialization
+    void serialize(std::ofstream& outFile) const override;  // Serialize the plant to a file (for saving)
+    static Plant* deserialize(std::ifstream& inFile);       // Deserialize a plant from a file (for loading)
 };
-
 
 #endif // PLANT_H

@@ -7,13 +7,16 @@
 // allows the player to either start a new game, load a previous saved game, or
 // quit the game
 
+// Class representing the main menu for the game
 class MainMenu {
  private:
   Game* game;  // Pointer to the Game instance
 
  public:
-  MainMenu(Game* gameInstance);  // Constructor
+  // Constructor
+  MainMenu(Game* gameInstance);      // Constructor
 
+  // Methods
   void displayMenu();                // Displays the main menu
   void handleSelection(int choice);  // Handles menu selection
 };

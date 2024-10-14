@@ -7,35 +7,27 @@
 
 using namespace std;
 
-// this class contains information about the seed of a type of plant the player
+// This class contains information about the seed of a type of plant the player
 // can grow, including potato, corn and tomato seeds
+// This class inherits from item class
 
-// this class inherits from item class
-
-// forward declaration of the Plant class
+// Forward declaration of the Plant class
 class Plant;
 
+// Class representing a seed that can be bought and grown into a plant
 class Seed : public Item {
 public:
-  // constructor to initialize a Seed object
-  Seed(const string& n, int p);
+    // Constructor
+    Seed(const std::string& n, int price);  // Initializes a Seed object with a name and price
 
-  // displays the seed's details (override display method from Item class)
-  void display() const override;
+    // Methods
+    void display() const override;          // Displays the seed's details (name and price)
+    Plant* grow() const;                    // Grows the seed into a Plant
+    std::string getPlantType() const;       // Returns the type of plant the seed grows into
 
-  // growing the seed into a plant (Plant class)
-  Plant* grow() const;
-
-  // returns the type of plant the seed grows into
-  std::string getPlantType() const;
-
-  // serialize the seed to a file
-    void serialize(std::ofstream& outFile) const override;
-
-
-  // deserialize a seed from a file
-    static Seed* deserialize(std::ifstream& inFile);
+    // Serialization
+    void serialize(std::ofstream& outFile) const override;   // Serializes the seed to a file (for saving)
+    static Seed* deserialize(std::ifstream& inFile);         // Deserializes a seed from a file (for loading)
 };
 
-
-#endif  // SEED_H
+#endif // SEED_H

@@ -49,8 +49,7 @@ GrownAnimal* GrownAnimal::deserialize(std::ifstream& inFile) {
   int price, produceValue, produceCount, count;
 
   // Error checking while reading from the file
-  if (!(inFile >> name >> price >> produceType >> produceValue >>
-        produceCount >> count)) {
+  if (!(inFile >> name >> price >> produceType >> produceValue >> produceCount >> count)) {
     cerr << "Error reading grown animal data from file." << endl;
     return nullptr;
   }
