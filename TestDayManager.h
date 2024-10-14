@@ -1,7 +1,8 @@
 #ifndef TESTDAYMANAGER_H
 #define TESTDAYMANAGER_H
 
-// testing for DayManager
+// Testing for DayManager
+
 #include <iostream>
 
 #include "DayManager.h"
