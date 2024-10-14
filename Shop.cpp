@@ -19,14 +19,12 @@ Shop::Shop(){
     inventory.addItem(new Dog("The Cutest Dog", 200));
 }
 
-
 //Destructor to clean up dynamically allocated items
 Shop::~Shop() {
     for (auto item : inventory.getItems()) {
         delete item; // Free memory for each item
     }
 }
-
 
 //Displaying available items for purchase
 void Shop::displayItems() const {
@@ -37,7 +35,6 @@ void Shop::displayItems() const {
     }
 }
 
-
 // Handles item purchasing logic
 bool Shop::buyItem(int choice, int& gold, Inventory& playerInventory) {
     if (choice < 1 || choice > inventory.getItems().size()) {
@@ -45,9 +42,7 @@ bool Shop::buyItem(int choice, int& gold, Inventory& playerInventory) {
         return false;
     }
 
-
     Item* shopItem = inventory.getItems()[choice - 1];  // Get the selected item from the shop
-
 
     // Handle purchasing the Dog item
     if (Dog* dog = dynamic_cast<Dog*>(shopItem)) {
@@ -61,16 +56,13 @@ bool Shop::buyItem(int choice, int& gold, Inventory& playerInventory) {
         }
     }
 
-
     // Handle purchasing other items
     if (gold >= shopItem->getPrice()) {
         gold -= shopItem->getPrice(); // Deduct the gold
 
-
         // Check if the item already exists in the player's inventory
         auto it = std::find_if(playerInventory.getItems().begin(), playerInventory.getItems().end(),
             [shopItem](Item* i) { return i->getName() == shopItem->getName(); });
-
 
         if (it != playerInventory.getItems().end()) {
             // If the item already exists in the player's inventory, increment the count
@@ -86,10 +78,8 @@ bool Shop::buyItem(int choice, int& gold, Inventory& playerInventory) {
                 playerInventory.addItem(new Dog(*dog));  // Adds the Dog to player's inventory
                 }
 
-
             cout << "You bought " << shopItem->getName() << " for " << shopItem->getPrice() << " gold.\n";
         }
-
 
         return false;  // Return false to indicate the player can't afford the item
     } else {
