@@ -8,14 +8,16 @@ using namespace std;
 
 // Constructor to initialize random seed
 Weather::Weather() {
-    std::srand(static_cast<unsigned int>(std::time(nullptr))); // Seed for randomness
-    generateWeather(); // Generate initial weather
+    // Seed for random generation
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    // Generate initial weather
+    generateWeather();
 }
 
 // Generate weather for the day based on probabilities
 void Weather::generateWeather() {
-    int chance = std::rand() % 100; // Generate a random number between 0 and 99
-
+    // Generate a random number between 0 and 99
+    int chance = std::rand() % 100; 
 
     if (chance < 75) {
         currentWeather = SUNNY; // 75% chance
@@ -27,9 +29,9 @@ void Weather::generateWeather() {
 }
 
 
-// Get the current weather type
+// Return the current weather type
 Weather::Type Weather::getWeather() const {
-    return currentWeather; // Return the current weather type
+    return currentWeather;
 }
 
 
