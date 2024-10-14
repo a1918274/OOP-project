@@ -1,3 +1,6 @@
+#ifndef TESTDAYMANAGER_H
+#define TESTDAYMANAGER_H
+
 // testing for DayManager
 #include <iostream>
 
@@ -5,7 +8,7 @@
 
 using namespace std;
 
-class UnitTest {
+class testDayManager {
  public:
   void runTests() {
     testGetActions();
@@ -241,9 +244,4 @@ class UnitTest {
   }
 };
 
-int main() {
-  UnitTest unitTest;
-  unitTest.runTests();
-
-  return 0;
-}
+#endif  // TESTDAYMANAGER_H
