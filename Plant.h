@@ -23,10 +23,10 @@ public:
     // Returns the sell price of the plant
     int getSellPrice() const;
 
-    // Serialize the plant to a file
+    // Serialize the plant to a file (for saving)
     void serialize(std::ofstream& outFile) const override;
 
-    // Deserialize a plant from a file
+    // Deserialize a plant from a file (for loading)
     static Plant* deserialize(std::ifstream& inFile);
 };
 

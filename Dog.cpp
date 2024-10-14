@@ -7,7 +7,6 @@ using namespace std;
 // Constructor that initializes Dog with a name and price
 Dog::Dog(const string& name, int price) : Item(name, price, 1) {}
 
-
 // Implementing the pure virtual function to display item details
 void Dog::display() const {
      cout << "[ " << getItemCount() << "x ] "
@@ -15,15 +14,11 @@ void Dog::display() const {
          << " (" << getPrice() << " gold)\n";
 }
 
-
-
 // Implementing the serialize method
 void Dog::serialize(std::ofstream& outFile) const {
     outFile << "Dog " << getName() << " " << getPrice()
             << " " << getItemCount() << "\n"; // Use getter for item count
 }
-
-
 
 // Static method for deserialization
 Dog* Dog::deserialize(std::ifstream& inFile) {
@@ -36,9 +31,7 @@ Dog* Dog::deserialize(std::ifstream& inFile) {
         return nullptr; // Return nullptr if reading fails
     }
 
-
     Dog* dog = new Dog(name, price);
     dog->setItemCount(count); // Set the item count after deserialization using setter
     return dog;
 }
-

@@ -1,12 +1,10 @@
 #include "Seed.h"
 #include "Plant.h"
-
 #include <iostream>
 
 using namespace std;
 
-// constructor to initialize a seed object to item class
-// itemCount is initialized ti 1 via the base constructor
+// constructor to initialize a seed object to item class itemCount is initialized ti 1 via the base constructor
 Seed::Seed(const string& n, int p) : Item(n, p, 1) {}
 
 // display the seed's name and price (override method from parent class)
@@ -68,4 +66,3 @@ Seed* Seed::deserialize(std::ifstream& inFile) {
     seed->setItemCount(count); // Set item count using the setter
     return seed;
 }
-
