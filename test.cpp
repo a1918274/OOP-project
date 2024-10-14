@@ -3,5 +3,8 @@
 #include"TestDayManager.h"
 
 int main(){
-    TestDayManager test
+    TestDayManager testDayManger;
+    testDayManger.runTests();
+
+    return 0;
 }
