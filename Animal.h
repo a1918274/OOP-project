@@ -5,28 +5,27 @@
 // animals this class differentiates young and grown animals from a pure item
 // (cannot be sold like plant)
 
+#include "Item.h"
 #include <string>
 
-#include "Item.h"
+// Class representing an animal that inherits from Item
+class Animal : public Item {
+protected:
+  std::string type;                 // Animal type
 
-class Animal : public Item {  // inherits from item
- protected
-     :  // can be accessed by the child class (young animal and grown animal)
-  std::string type;  // animal type
+public:
+  // Constructor
+  Animal(const std::string& n, int p, const std::string& t);  // Initializes an Animal object
 
- public:
-  // constructor to initialize an animal object with name, price and type
-  Animal(const std::string& n, int p, const std::string& t);
+  // Getter
+  std::string getType() const;                                // Returns the type of the animal
 
-  // getter for the type
-  std::string getType() const;
+  // Pure virtual method
+  virtual void display() const = 0;                           // Must be implemented by derived classes
 
-  // virtual display method
-  virtual void display() const = 0;  // pure virtual function
-
-  // virtual serialize and deserialize method
-  virtual void serialize(std::ofstream& outFile) const = 0;
-  static Animal* deserialize(std::ifstream& inFile);
+  // Serialization
+  virtual void serialize(std::ofstream& outFile) const = 0;   // Virtual Serializes the animal to a file (for saving)
+  static Animal* deserialize(std::ifstream& inFile);          // Deserializes an animal from a file (for loading)
 };
 
-#endif  // ANIMAL_H
+#endif // ANIMAL_H
