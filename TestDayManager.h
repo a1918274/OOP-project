@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class testDayManager {
+class TestDayManager {
  public:
   void runTests() {
     testGetActions();
