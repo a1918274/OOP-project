@@ -170,8 +170,8 @@ void Game::sleep() {
         }
     }
 
-// Call Actions too
-
+    dayManager.resetActions(3);                 // Reset actions for the new day
+    dayManager.nextDay();                       // Advance to the next day
     weather.generateWeather();                  // Generate new weather for the new day
     weather.applyWeatherEffects(dayManager);    // Apply weather effects for the new day
 }
@@ -188,32 +188,45 @@ void Game::loadGame() {
 
 // Main game loop
 void Game::play() {
-    // Display the menu to the player
-    displayMenu(); 
-
-    string choice;
-    cin >> choice;
-
-    // Validate if the input is a valid number
-        if (!ValidNumberCheck::isValidNumber(choice)) {
-            cout << "Your brain looks at you puzzled and advises you to read the options again.\n";
+    while (true) {
+        // Check if actions are exhausted
+        if (dayManager.getActions() <= 0) {
+            cout << "You've worked hard and decided to call it a night!\n";
+            dayManager.nextDay();
+            dayManager.resetActions(3);
+            weather.generateWeather(); // Generate new weather for the new day
+            weather.applyWeatherEffects(dayManager); // Apply weather effects at the start of the new day
+            continue; // Restart the loop for the new day
         }
 
-    if (choice == "1") {
-        buyItem();                  // Buy an item
-    } else if (choice == "2") {
-        tendToItems();              // Tend to items in inventory
-    } else if (choice == "3") {
-        sellItems();                // Sell items in inventory
-    } else if (choice == "4") {
-        displayInventory();         // Show player's inventory
-    } else if (choice == "5") {
-        sleep();                    // End the day
-    } else if (choice == "9") {
-        saveGame();                 // Save game
-    } else if (choice == "0") {
-         cout << "MainMenu";        // Return to main menu
-    } else {
-        cout << "Invalid choice. Please try again.\n";
+        // Display the menu to the player
+        displayMenu();
+
+        string choice;
+        cin >> choice;
+
+        // Validate if the input is a valid number
+        if (!ValidNumberCheck::isValidNumber(choice)) {
+            cout << "Your brain looks at you puzzled and advises you to read the options again.\n";
+            continue; // Restart the loop for valid input
+        }
+
+        if (choice == "1") {
+            buyItem();                  // Buy an item
+        } else if (choice == "2") {
+            tendToItems();              // Tend to items in inventory
+        } else if (choice == "3") {
+            sellItems();                // Sell items in inventory
+        } else if (choice == "4") {
+            displayInventory();         // Show player's inventory
+        } else if (choice == "5") {
+            sleep();                    // End the day
+        } else if (choice == "9") {
+            saveGame();                 // Save game
+        } else if (choice == "0") {
+            return; // Return to main menu
+        } else {
+            cout << "Invalid choice. Please try again.\n";
+        }
     }
 }
