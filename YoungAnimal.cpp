@@ -3,9 +3,10 @@
 #include <iostream>
 using namespace std;
 
-// constructor to initialise a YoungAnimal object
+// Constructor to initialise a YoungAnimal object
 YoungAnimal::YoungAnimal(const std::string& n, int p, const std::string& t)
-    : Animal(n, p, t) {}
+    : Animal(n, p, t) {} // ItemCount defaults to 1 in Animal
+
 
 // logic to grow the young animal into an adult animal
 GrownAnimal* YoungAnimal::grow() {
@@ -19,9 +20,9 @@ GrownAnimal* YoungAnimal::grow() {
   return nullptr;  // return nullptr if no matching young animal is found
 }
 
-// displays the young animal's details (override)
+// Displays the young animal's name, price, and type, with item count in boxes (override)
 void YoungAnimal::display() const {
-  cout << "Young Animal: " << name << ", Price: " << price
+  cout <<"[ "<<getItemCount()<< "x ] "<< "Young Animal: " << name << ", Price: " << price
        << " gold (Type: " << getType() << ")\n";
 }
 
