@@ -22,7 +22,6 @@ void Plant::serialize(std::ofstream& outFile) const {
     outFile << "Plant " << name << " " << price << " " << sellPrice << "\n";
 }
 
-
 // Deserialize a plant from a file
 Plant* Plant::deserialize(std::ifstream& inFile) {
     string name;
