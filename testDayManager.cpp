@@ -12,6 +12,9 @@ class UnitTest {
     testSetActions();
     testGetDay();
     testSetDay();
+    testNextDay();
+    testPerformAction();
+    testReset();
   }
 
  private:
@@ -71,7 +74,7 @@ class UnitTest {
         cout << "Test 3 constructor failed!" << endl;
       }
       dayManager.setActions(-3);
-      if (dayManager.getActions() != 0) {
+      if (dayManager.getActions() != 10) {
         cout << "Test 3 failed!" << endl;
       }
     }
@@ -138,6 +141,98 @@ class UnitTest {
       }
       dayManager.setDay(-1);
       if (dayManager.getDay() != 0) {
+        cout << "Test 3 failed!" << endl;
+      }
+    }
+
+    cout << "All tests passed!" << endl;
+  }
+
+  void testNextDay() {
+    cout << "Testing for nextDay:" << endl;
+
+    {
+      DayManager dayManager(3);
+      dayManager.nextDay();
+      if (dayManager.getDay() != 1) {
+        cout << "Test 1 failed!" << endl;
+      }
+    }
+
+    {
+      DayManager dayManager(3);
+      dayManager.setDay(10);
+      dayManager.nextDay();
+      if (dayManager.getDay() != 11) {
+        cout << "Test 2 failed!" << endl;
+      }
+    }
+
+    {
+      DayManager dayManager(0);
+      dayManager.setDay(0);
+      dayManager.nextDay();
+      if (dayManager.getDay() != 1) {
+        cout << "Test 3 failed!" << endl;
+      }
+    }
+
+    cout << "All tests passed!" << endl;
+  }
+
+  void testPerformAction() {
+    cout << "Testing for performAction:" << endl;
+
+    {
+      DayManager dayManager(3);
+      dayManager.performAction();
+      if (dayManager.getActions() != 2) {
+        cout << "Test 1 failed!" << endl;
+      }
+    }
+
+    {
+      DayManager dayManager(0);
+      dayManager.performAction();
+      if (dayManager.getActions() != 0) {
+        cout << "Test 2 failed!" << endl;
+      }
+    }
+
+    {
+      DayManager dayManager(100);
+      dayManager.performAction();
+      if (dayManager.getActions() != 99) {
+        cout << "Test 3 failed!" << endl;
+      }
+    }
+
+    cout << "All tests passed!" << endl;
+  }
+
+  void testReset() {
+    cout << "Testing for reset:" << endl;
+
+    {
+      DayManager dayManager(3);
+      dayManager.reset();
+      if (dayManager.getActions() != 3 && dayManager.getDay() != 1) {
+        cout << "Test 1 failed!" << endl;
+      }
+    }
+
+    {
+      DayManager dayManager(100);
+      dayManager.reset();
+      if (dayManager.getActions() != 3 && dayManager.getDay() != 1) {
+        cout << "Test 2 failed!" << endl;
+      }
+    }
+
+    {
+      DayManager dayManager(-1);
+      dayManager.reset();
+      if (dayManager.getActions() != 3 && dayManager.getDay() != 1) {
         cout << "Test 3 failed!" << endl;
       }
     }
