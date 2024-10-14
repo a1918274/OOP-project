@@ -1,23 +1,31 @@
 #ifndef YOUNGANIMAL_H
 #define YOUNGANIMAL_H
 
-// this class inherits from animal and contains information about a type of baby
-// animal the player can buy and tend to
-
 #include <fstream>
 #include <string>
 
 #include "Animal.h"
 #include "GrownAnimal.h"
 
+// This class inherits from animal and contains information about a type of baby
+// animal the player can buy and tend to
+
 class YoungAnimal : public Animal {
  public:
-  // constructor to initialise a YoungAnimal object
+  // Constructor
+
+  // Initialise a YoungAnimal object
   YoungAnimal(const std::string& n, int p, const std::string& t);
 
-  // logic to grow the young animal into an adult animal
-  GrownAnimal* grow();
+  // Getters
 
+  // Returns the type of grown animal corresponding to the young animal
+  std::string getGrownAnimalType() const;
+
+  // Methods
+
+  // Logic to grow the young animal into an adult animal
+  GrownAnimal* grow();
   // displays the young animal's details (override)
   void display() const override;
 
