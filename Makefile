@@ -60,6 +60,13 @@ clean:
 run: $(TARGET)
 	./$(TARGET)
 
+# source files for testing (include all *.cpp afterwards - couldnt compile now)
+SOURCE = TestDayManager.h DayManager.cpp
+# target to run the main testing file with normal flags
+test: $(SOURCE)
+	g++ -Wall -Wextra -std=c++11 test.cpp $(SOURCE) -o test
+	./test
+
 # PHONY targets to avoid conflicts with files
 .PHONY: all debug release clean run
 
