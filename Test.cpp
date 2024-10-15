@@ -4,6 +4,7 @@
 #include "TestDayManager.h"
 #include "TestDog.h"
 #include "TestGrownAnimal.h"
+#include "TestInventory.h"
 #include "TestMainMenu.h"
 #include "TestPlant.h"
 #include "TestSeed.h"
@@ -29,8 +30,13 @@ int main() {
   // TestValidNumberCheck testValidNumberCheck;
   // testValidNumberCheck.runTests();
 
+<<<<<<< HEAD
   TestShop testShop;
   testShop.runTests();
+=======
+   TestInventory testInventory;
+   testInventory.runTests();
+>>>>>>> 0df8c73f9399f4a70293938a50bfc2dae603d677
 
   // [ ITEM TESTS ]
 

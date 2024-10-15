@@ -62,7 +62,7 @@ void Weather::applyWeatherEffects(DayManager &dayManager) {
         case EARTHQUAKE:
             actions = 0; // Set actions to 0, but don't call nextDay() here
             cout << "\n\n[ B R E A K I N G   N E W S ]\n";
-            cout << "An earthquake has hit the town, the mayor has requested for everyone to please stay indoors and stay safe.\n";
+            cout << "An earthquake has hit the town, and the mayor has requested for everyone to please stay indoors and stay safe.\n";
             cout << "You decide to stay home for the day.";
             break;
     }
