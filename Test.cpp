@@ -33,8 +33,8 @@ int main() {
   // TestDog testDog;
   // testDog.runTests();
 
-   TestSeed testSeed;
-   testSeed.runTests();
+  // TestSeed testSeed;
+  // testSeed.runTests();
 
   // TestPlant testPlant;
   // testPlant.runTests();

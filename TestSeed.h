@@ -8,6 +8,8 @@
 #include "Seed.h"
 #include "Plant.h"
 
+//Testing for Seed files
+
 using namespace std;
 
 class TestSeed {
