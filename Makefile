@@ -40,7 +40,7 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
 
 # rule to compile source files into object files
-# $< means the first prerequisite (the corresponding cpp file
+# $< means the first prerequisite (the corresponding cpp file)
 # $@ is the corresponding target name
 %.o: %.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
@@ -62,10 +62,11 @@ run: $(TARGET)
 
 # source files for testing (include all *.cpp afterwards - couldnt compile now)
 SOURCE_HEADER = TestDayManager.h TestValidNumberCheck.h TestMainMenu.h
-SOURCE_CPP = DayManager.cpp ValidNumberCheck.cpp MainMenu.h
+SOURCE_CPP = Test.cpp Animal.cpp DayManager.cpp Dog.cpp Game.cpp GrownAnimal.cpp Inventory.cpp Item.cpp MainMenu.cpp Plant.cpp Seed.cpp Shop.cpp ValidNumberCheck.cpp Weather.cpp YoungAnimal.cpp
+
 # target to run the main testing file with normal flags
-test: $(SOURCE)
-	@g++ -Wall -Wextra -std=c++11 test.cpp $(SOURCE) -o test
+test: $(SOURCE_HEADER) $(SOURCE_CPP)
+	@g++ -Wall -Wextra -std=c++11 $(SOURCE_CPP) -o test
 	@./test
 	@rm -f test
 
