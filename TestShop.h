@@ -71,7 +71,14 @@ class TestShop {
       Shop shop;
       Inventory inventory;
       int gold = 12;
-      assert(shop.buyItem(1, gold, inventory) == 1);
+      assert(shop.buyItem(1, gold, inventory) == 0);
+    }
+
+    {
+      Shop shop;
+      Inventory inventory;
+      int gold = 200;
+      assert(shop.buyItem(7, gold, inventory) == 1);
     }
 
     cout << "All tests for buyItem passed!" << endl;

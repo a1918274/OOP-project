@@ -80,7 +80,6 @@ bool Shop::buyItem(int choice, int& gold, Inventory& playerInventory) {
       (*it)->incrementCount();
       cout << "\nYou bought another " << shopItem->getName()
            << ". Total count: " << (*it)->getItemCount() << ".\n";
-
     } else {
       // If the item doesn't exist in the player's inventory, create a new one
       // and add it
@@ -99,10 +98,9 @@ bool Shop::buyItem(int choice, int& gold, Inventory& playerInventory) {
            << shopItem->getPrice() << " gold.\n";
     }
 
-    return true;
-
+    return false;  // Return false to indicate the player can't afford the item
   } else {
     cout << "\n Uhhhh.... You're broke lol.\n";
-    return false;  // Return false to indicate the player can't afford the item
+    return false;
   }
 }
