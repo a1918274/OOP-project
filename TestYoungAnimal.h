@@ -138,6 +138,54 @@ class TestYoungAnimal {
       inFile.close();
     }
 
+    {
+      // Test serialization with different values
+      YoungAnimal duckling("Duckling", 10, "Waterfowl");
+      std::ofstream outFile("test_YoungAnimal2.txt");
+      duckling.serialize(outFile);
+      outFile.close();
+
+      // Test deserialization
+      std::ifstream inFile("test_YoungAnimal2.txt");
+
+      // Read the item type first
+      string itemType;
+     inFile >> itemType;
+     assert(itemType == "YoungAnimal" && "Test 5.1 failed: Incorrect item type in file");
+
+     YoungAnimal* deserializedDuckling = YoungAnimal::deserialize(inFile);
+     assert(deserializedDuckling != nullptr && "Test 5.2 failed: Deserialization returned nullptr");
+     assert(deserializedDuckling->getName() == "Duckling" && "Test 5.3 failed: Incorrect name after deserialization");
+     assert(deserializedDuckling->getPrice() == 10 && "Test 5.4 failed: Incorrect price after deserialization");
+     assert(deserializedDuckling->getType() == "Waterfowl" && "Test 5.5 failed: Incorrect type after deserialization");
+     delete deserializedDuckling;  // Clean up
+     inFile.close();
+    }
+
+    {
+      // Test serialization with edge case values
+      YoungAnimal zeroPriceAnimal("ZeroPriceAnimal", 0, "Unknown");
+      std::ofstream outFile("test_YoungAnimal3.txt");
+      zeroPriceAnimal.serialize(outFile);
+      outFile.close();
+
+      // Test deserialization
+      std::ifstream inFile("test_YoungAnimal3.txt");
+
+      // Read the item type first
+      string itemType;
+      inFile >> itemType;
+      assert(itemType == "YoungAnimal" && "Test 6.1 failed: Incorrect item type in file");
+
+      YoungAnimal* deserializedZeroPriceAnimal = YoungAnimal::deserialize(inFile);
+      assert(deserializedZeroPriceAnimal != nullptr && "Test 6.2 failed: Deserialization returned nullptr");
+      assert(deserializedZeroPriceAnimal->getName() == "ZeroPriceAnimal" && "Test 6.3 failed: Incorrect name after deserialization");
+      assert(deserializedZeroPriceAnimal->getPrice() == 0 && "Test 6.4 failed: Incorrect price after deserialization");
+      assert(deserializedZeroPriceAnimal->getType() == "Unknown" && "Test 6.5 failed: Incorrect type after deserialization");
+      delete deserializedZeroPriceAnimal;  // Clean up
+      inFile.close();
+      }
+
     cout << "Serialization and deserialization tests passed!" << endl;
   }
 };

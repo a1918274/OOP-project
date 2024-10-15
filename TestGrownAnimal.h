@@ -59,6 +59,18 @@ class TestGrownAnimal {
       assert(cow.getProduceCount() == 0 && "Test 2.3 failed: Produce count should be cleared");
     }
 
+    {
+      GrownAnimal bird("THAT bird", 25, "Carwash", 12);
+      bird.produceItem();
+      assert(bird.getProduceCount() == 1 && "Test 2.4 failed: Produce count should be 1 after one production");
+
+      bird.produceItem();
+      assert(bird.getProduceCount() == 2 && "Test 2.5 failed: Produce count should be 2 after two productions");
+
+      bird.clearProduce();
+      assert(bird.getProduceCount() == 0 && "Test 2.6 failed: Produce count should be cleared");
+    }
+
     cout << "All produce method tests passed!" << endl;
   }
 
@@ -73,10 +85,10 @@ class TestGrownAnimal {
     }
 
     {
-      GrownAnimal rat("Ratthew", 100, "Cheese", 15);
-      cout << "Expected Output:\n[ 1x ] Grown Animal: Ratthew, Price: 100 gold (Produce: Cheese, Produce count: 0 )\n";
+      GrownAnimal bird("THAT bird", 100, "Carwash", 15);
+      cout << "Expected Output:\n[ 1x ] Grown Animal: THAT bird, Price: 100 gold (Produce: Carwash, Produce count: 0 )\n";
       cout << "Actual Output:\n";
-      rat.display();
+      bird.display();
       cout << "Test 2 Passed" << endl;
     }
 
@@ -109,6 +121,58 @@ class TestGrownAnimal {
       assert(deserializedCow->getProduceValue() == 12 && "Test 4.5 failed: Incorrect produce value after deserialization");
       assert(deserializedCow->getProduceCount() == 1 && "Test 4.6 failed: Incorrect produce count after deserialization");
       delete deserializedCow;  // Clean up
+      inFile.close();
+    }
+
+    {
+      // Test serialization with different values
+      GrownAnimal goat("Goat", 30, "Milk", 15);
+      goat.produceItem();  // Goat has produced 1 Milk
+      std::ofstream outFile("test_GrownAnimal2.txt");
+      goat.serialize(outFile);
+      outFile.close();
+
+      // Test deserialization
+      std::ifstream inFile("test_GrownAnimal2.txt");
+
+      // Read the item type first
+      string itemType;
+      inFile >> itemType;
+      assert(itemType == "GrownAnimal" && "Test 5.1 failed: Incorrect item type in file");
+
+      GrownAnimal* deserializedGoat = GrownAnimal::deserialize(inFile);
+      assert(deserializedGoat != nullptr && "Test 5.2 failed: Deserialization returned nullptr");
+      assert(deserializedGoat->getName() == "Goat" && "Test 5.3 failed: Incorrect name after deserialization");
+      assert(deserializedGoat->getPrice() == 30 && "Test 5.4 failed: Incorrect price after deserialization");
+      assert(deserializedGoat->getProduceValue() == 15 && "Test 5.5 failed: Incorrect produce value after deserialization");
+      assert(deserializedGoat->getProduceCount() == 1 && "Test 5.6 failed: Incorrect produce count after deserialization");
+      delete deserializedGoat;  // Clean up
+      inFile.close();
+    }
+
+    {
+      // Test serialization with different values
+      GrownAnimal chicken("Chicken", 20, "Egg", 5);
+      chicken.produceItem();  // Chicken has produced 1 Egg
+      std::ofstream outFile("test_GrownAnimal3.txt");
+      chicken.serialize(outFile);
+      outFile.close();
+
+      // Test deserialization
+      std::ifstream inFile("test_GrownAnimal3.txt");
+
+      // Read the item type first
+      string itemType;
+      inFile >> itemType;
+      assert(itemType == "GrownAnimal" && "Test 6.1 failed: Incorrect item type in file");
+
+      GrownAnimal* deserializedChicken = GrownAnimal::deserialize(inFile);
+      assert(deserializedChicken != nullptr && "Test 6.2 failed: Deserialization returned nullptr");
+      assert(deserializedChicken->getName() == "Chicken" && "Test 6.3 failed: Incorrect name after deserialization");
+      assert(deserializedChicken->getPrice() == 20 && "Test 6.4 failed: Incorrect price after deserialization");
+      assert(deserializedChicken->getProduceValue() == 5 && "Test 6.5 failed: Incorrect produce value after deserialization");
+      assert(deserializedChicken->getProduceCount() == 1 && "Test 6.6 failed: Incorrect produce count after deserialization");
+      delete deserializedChicken;  // Clean up
       inFile.close();
     }
 
