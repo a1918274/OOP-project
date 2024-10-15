@@ -26,7 +26,7 @@ Shop::~Shop() {
   inventory.clear();  // call delete on each dynamically allocated item
 }
 
-// Getter for inventory
+// Getter for inventory (for testing)
 Inventory& Shop::getInventory() { return inventory; }
 
 // Displaying available items for purchase

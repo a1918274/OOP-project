@@ -17,7 +17,7 @@ class Shop {
   // Destructor
   ~Shop();  // Cleans up dynamically allocated items
 
-  // Getter for inventory
+  // Getter for inventory (for testing)
   Inventory& getInventory();
 
   // Methods

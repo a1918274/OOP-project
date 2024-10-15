@@ -26,22 +26,24 @@ class TestShop {
     cout << "Testing for shop constructor:\n";
 
     {
-      // Inventory inventory;
       Shop shop;
       const Inventory& inventory = shop.getInventory();
       assert(!inventory.getItems().empty());
-      // shop.~Shop();
+    }
+
+    {
+      Shop shop;
+      const Inventory& inventory = shop.getInventory();
+      assert(inventory.getItems().size()==7);
     }
 
     cout << "All tests for constructor passed!" << endl;
   }
 
   void testDisplayItems() {
-    cout<<"Testing for displayItems:\n";
+    cout << "Testing for displayItems:\n";
 
-    {
-
-    }
+    {}
   }
   void testBuyItem() {}
 };
