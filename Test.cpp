@@ -5,6 +5,8 @@
 #include "TestMainMenu.h"
 #include "TestValidNumberCheck.h"
 #include "TestWeather.h"
+#include "TestPlant.h"
+#include "TestYoungAnimal.h"
 
 int main() {
   //   TestDayManager testDayManger;
@@ -21,6 +23,12 @@ int main() {
 
   TestDog testDog;
   testDog.runTests();
+
+  TestPlant testPlant;
+  testPlant.runTests();
+
+  TestYoungAnimal testYoungAnimal;
+  testYoungAnimal.runTests();
 
   return 0;
 }

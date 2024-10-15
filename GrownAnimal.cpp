@@ -39,7 +39,7 @@ void GrownAnimal::setProduceCount(int count) {
 
 // serialize (override) and deserialize the grown animal to and from a file
 void GrownAnimal::serialize(std::ofstream& outFile) const {
-  outFile << "GrownAnimal: " << getName() << " " << getPrice() << " "
+  outFile << "GrownAnimal " << getName() << " " << getPrice() << " "
           << produceType << " " << getProduceValue() << " " << getProduceCount()
           << " " << getItemCount() << "\n";
 }
