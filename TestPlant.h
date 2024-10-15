@@ -1,13 +1,14 @@
 #ifndef TESTPLANT_H
 #define TESTPLANT_H
+
+// Testing for the Plant class
+
 #include <iostream>
 #include <fstream>
 #include <cassert>
 
-#include "Item.h"
 #include "Plant.h"
-
-// Testing for the Plant class
+#include "Item.h"
 
 using namespace std;
 
@@ -45,6 +46,7 @@ void testConstructor(){
 
 void testDisplay(){
     cout << "Testing Plant display:\n";
+
     Plant plant("Corn", 6, 9);
     plant.display();
     // Manually check the subsequent output to confirm display format is correct
@@ -83,12 +85,17 @@ void testSerializeDeserialize() {
     {
       // Serialization testing
       Plant plant("Cherry", 3, 7);
-      ofstream outFile("test_plant.txt");
+      ofstream outFile("testPlant.txt");
+      assert(outFile); // Error is outfile is not created
       plant.serialize(outFile);
       outFile.close();
 
       // Deserialization testing
-      ifstream inFile("test_plant.txt");
+      ifstream inFile("testPlant.txt");
+      string type;
+      inFile>>type;
+      assert(inFile); // Error if inFile cannot open
+
       Plant* deserializedPlant = Plant::deserialize(inFile);
       assert(deserializedPlant != nullptr && "Test 4.1 failed: Deserialization returned nullptr");
       assert(deserializedPlant->getName() == "Cherry" && "Test 4.2 failed: Incorrect name after deserialization");
