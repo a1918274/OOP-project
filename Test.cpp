@@ -1,22 +1,19 @@
-// main file for testing all other test files
-// include all test files here
-#include "TestMainMenu.h"
+// Main file for testing
+
+#include "GrownAnimal.h"
 #include "TestDayManager.h"
+#include "TestDog.h"
+#include "TestMainMenu.h"
+#include "TestPlant.h"
 #include "TestValidNumberCheck.h"
 #include "TestWeather.h"
-#include "TestDog.h"
-#include "TestPlant.h"
 #include "YoungAnimal.h"
-#include "GrownAnimal.h"
 
 int main() {
-  
   // [ MENU TESTS ]
 
   // TestMainMenu testMainMenu;
   // testMainMenu.runTests();
-
-
 
   // [ GAME LOGIC TESTS ]
 
@@ -28,8 +25,6 @@ int main() {
 
   // TestValidNumberCheck testValidNumberCheck;
   // testValidNumberCheck.runTests();
-
-
 
   // [ ITEM TESTS ]
 
@@ -44,8 +39,6 @@ int main() {
 
   // TestGrownAnimal testGrownAnimal;
   // testGrownAnimal.runTests();
-
-
 
   return 0;
 }
