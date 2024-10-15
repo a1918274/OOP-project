@@ -50,7 +50,32 @@ class TestShop {
            << endl;
     }
   }
-  void testBuyItem() {}
+  void testBuyItem() {
+    cout << "Testing for buyItem:\n";
+
+    {
+      Shop shop;
+      Inventory inventory;
+      int gold = 12;
+      assert(shop.buyItem(0, gold, inventory) == 0);
+    }
+
+    {
+      Shop shop;
+      Inventory inventory;
+      int gold = 0;
+      assert(shop.buyItem(1, gold, inventory) == 0);
+    }
+
+    {
+      Shop shop;
+      Inventory inventory;
+      int gold = 12;
+      assert(shop.buyItem(1, gold, inventory) == 1);
+    }
+
+    cout << "All tests for buyItem passed!" << endl;
+  }
 };
 
 #endif  // TESTSHOP_H
