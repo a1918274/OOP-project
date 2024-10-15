@@ -30,7 +30,6 @@ private:
     void testConstructor(){
         cout << "Testing Inventory constructor:\n";
         Inventory inventory;
-        //if (inventory.getItems().empty());
         assert(inventory.getItems().empty() && "Test failed, inventory is not initialised");
         cout << "Test 1 (constructor) passed\n" << endl;
     }
