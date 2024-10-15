@@ -5,7 +5,7 @@
 #include <string>
 #include <fstream>
 
-//This class contains the Dog item, which the user can purchase 
+// Dog class contains the Dog item, which the user can purchase 
 // from the shop (which effectively ends the game).
 
 class Dog : public Item {

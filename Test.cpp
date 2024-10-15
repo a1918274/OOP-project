@@ -1,6 +1,7 @@
 // main file for testing all other test files
 // include all test files here
 #include "TestDayManager.h"
+#include "TestDog.h"
 #include "TestMainMenu.h"
 #include "TestValidNumberCheck.h"
 #include "TestWeather.h"
@@ -12,11 +13,14 @@ int main() {
   //   TestValidNumberCheck testValidNumberCheck;
   //   testValidNumberCheck.runTests();
 
-  TestMainMenu testMainMenu;
-  testMainMenu.runTests();
+  // TestMainMenu testMainMenu;
+  // testMainMenu.runTests();
 
-  TestWeather testWeather;
-  testWeather.runTests();
+  // TestWeather testWeather;
+  // testWeather.runTests();
+
+  TestDog testDog;
+  testDog.runTests();
 
   return 0;
 }
