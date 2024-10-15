@@ -68,7 +68,7 @@ SOURCE_CPP = Test.cpp Animal.cpp DayManager.cpp Dog.cpp Game.cpp GrownAnimal.cpp
 test: $(SOURCE_HEADER) $(SOURCE_CPP)
 	@g++ -Wall -Wextra -std=c++11 $(SOURCE_CPP) -o test
 	@./test
-	@rm -f test
+	@rm -f test *.txt
 
 # PHONY targets to avoid conflicts with files
 .PHONY: all debug release clean run test

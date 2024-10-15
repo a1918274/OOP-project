@@ -62,6 +62,8 @@ class TestDog {
       dog.display();
       cout << "Test 2 passed!" << endl;
     }
+
+    cout << "Test display passed!" << endl;
   }
 
   void testSerializeDeserialize() {
@@ -69,14 +71,16 @@ class TestDog {
     {
       // serialization
       Dog dog("doggie", 100);
-      std::ofstream outFile("testDog1.txt");
+      std::ofstream outFile("testDog.txt");
       assert(outFile);  // Error if outFile is not created
       dog.serialize(outFile);
       outFile.close();
 
       // deserialization
-      std::ifstream inFile("testDog1.txt");
+      string type;
+      std::ifstream inFile("testDog.txt");
       assert(inFile);  // Error if inFile cannot open
+      inFile >> type;
       Dog* deserializedDog = Dog::deserialize(inFile);
       assert(deserializedDog->getName() == "doggie" &&
              deserializedDog->getPrice() == 100 &&
@@ -89,13 +93,15 @@ class TestDog {
       // serialization
       Dog dog("zero", 0);
       std::ofstream outFile("testDog.txt");
-      // assert(outFile);  // Error if outFile is not created
+      assert(outFile);  // Error if outFile is not created
       dog.serialize(outFile);
       outFile.close();
 
       // deserialization
+      string type;
       std::ifstream inFile("testDog.txt");
-      // assert(inFile);  // Error if inFile cannot open
+      assert(inFile);  // Error if inFile cannot open
+      inFile >> type;
       Dog* deserializedDog = Dog::deserialize(inFile);
       assert(deserializedDog->getName() == "zero" &&
              deserializedDog->getPrice() == 0 &&
@@ -108,13 +114,15 @@ class TestDog {
       // serialization
       Dog dog("yappie", 50);
       std::ofstream outFile("testDog.txt");
-      // assert(outFile);  // Error if outFile is not created
+      assert(outFile);  // Error if outFile is not created
       dog.serialize(outFile);
       outFile.close();
 
       // deserialization
+      string type;
       std::ifstream inFile("testDog.txt");
-      // assert(inFile);  // Error if inFile cannot open
+      assert(inFile);  // Error if inFile cannot open
+      inFile >> type;
       Dog* deserializedDog = Dog::deserialize(inFile);
       assert(deserializedDog->getName() == "yappie" &&
              deserializedDog->getPrice() == 50 &&
