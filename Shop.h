@@ -17,6 +17,9 @@ class Shop {
   // Destructor
   ~Shop();  // Cleans up dynamically allocated items
 
+  // Getter for inventory (for testing)
+  Inventory& getInventory();
+
   // Methods
   void displayItems() const;  // Function to display available items in the shop
   bool buyItem(int choice, int& gold, Inventory& playerInventory);
