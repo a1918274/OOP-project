@@ -28,6 +28,7 @@ class TestYoungAnimal {
  private:
   void testConstructor() {
     cout << "Testing YoungAnimal constructor:" << endl;
+    
     {
       YoungAnimal chick("Chick", 5, "Poultry");
       assert(chick.getName() == "Chick" && "Test 1.1 failed: Incorrect name");
@@ -47,6 +48,7 @@ class TestYoungAnimal {
 
   void testGetGrownAnimalType() {
     cout << "Testing getGrownAnimalType:" << endl;
+
     {
       YoungAnimal chick("Chick", 5, "Poultry");
       assert(chick.getGrownAnimalType() == "Chicken" && "Test 2.1 failed: Chick should grow into Chicken");
@@ -67,6 +69,7 @@ class TestYoungAnimal {
 
   void testGrow() {
     cout << "Testing grow method:" << endl;
+
     {
       YoungAnimal chick("Chick", 5, "Poultry");
       GrownAnimal* grownChick = chick.grow();
@@ -88,6 +91,7 @@ class TestYoungAnimal {
 
   void testDisplay() {
     cout << "Testing display method:" << endl;
+
     {
       YoungAnimal chick("Chick", 5, "Poultry");
       chick.display();
