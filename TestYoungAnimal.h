@@ -94,8 +94,18 @@ class TestYoungAnimal {
 
     {
       YoungAnimal chick("Chick", 5, "Poultry");
+      cout << "Expected Output:\n[ 1x ] Young Animal: Chick, Price: 5 gold (Type: Poultry)\n";
+      cout << "Actual Output:\n";
       chick.display();
-      // Manual check required to confirm output is correct
+      cout << "Test 1 Passed" << endl;
+    }
+
+    {
+      YoungAnimal rat("Ratthew", 2, "Cheese Lover");
+      cout << "Expected Output:\n[ 1x ] Young Animal: Ratthew, Price: 2 gold (Type: Cheese Lover)\n";
+      cout << "Actual Output:\n";
+      rat.display();
+      cout << "Test 2 Passed" << endl;
     }
 
     cout << "Display method tested!" << endl;
