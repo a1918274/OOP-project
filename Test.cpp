@@ -5,6 +5,7 @@
 #include "TestDog.h"
 #include "TestGrownAnimal.h"
 #include "TestMainMenu.h"
+#include "TestSeed.h"
 #include "TestPlant.h"
 #include "TestValidNumberCheck.h"
 #include "TestWeather.h"
@@ -31,6 +32,9 @@ int main() {
 
   // TestDog testDog;
   // testDog.runTests();
+
+  // TestSeed testSeed;
+  // testSeed.runTests();
 
   // TestPlant testPlant;
   // testPlant.runTests();

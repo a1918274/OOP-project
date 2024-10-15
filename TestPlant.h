@@ -18,7 +18,7 @@ public:
         cout << "\nRunning tests for Plant:\n\n";
         testConstructor();
         testDisplay();
-        testGetSellType();
+        testGetSellPrice();
         testSerializeDeserialize();
         cout << "\nFinished tests for Plant.\n\n";
     }
@@ -47,14 +47,32 @@ void testConstructor(){
 void testDisplay(){
     cout << "Testing Plant display:\n";
 
-    Plant plant("Corn", 6, 9);
-    plant.display();
+    {Plant plant("Corn", 6, 9);
     // Manually check the subsequent output to confirm display format is correct
+    cout << "Expected output: [ 1x ] Plant: Corn, Sell Price: 9 gold\n";
+      cout << "Actual output: ";
+      plant.display();
+    }
+
+    {Plant plant("Rose", 12, 30);
+    // Manually check the subsequent output to confirm display format is correct
+    cout << "Expected output: [ 1x ] Plant: Rose, Sell Price: 30 gold\n";
+      cout << "Actual output: ";
+      plant.display();
+    }
+
+    {Plant plant("Daisy", 1, 2);
+    // Manually check the subsequent output to confirm display format is correct
+    cout << "Expected output: [ 1x ] Plant: Daisy, Sell Price: 2 gold\n";
+      cout << "Actual output: ";
+      plant.display();
+    }
+
     cout << "Test 2 (display) passed" << endl;
 }
 
-void testGetSellType(){
-    cout << "Testing Plant getSellType:\n";
+void testGetSellPrice(){
+    cout << "Testing Plant getSellPrice:\n";
     {
     Plant plant("Corn", 6, 11);
     if (plant.getSellPrice() != 11) {
@@ -75,13 +93,14 @@ void testGetSellType(){
         cout << "Test 3.3 failed" << endl;
         }
     }
-    cout << "Test 3 (getSellType) passed" << endl;
+    cout << "Test 3 (getSellPrice) passed" << endl;
 }
 
 void testSerializeDeserialize() {
     // The serialize and deserialize functions are grouped together for testing, as retrieving
     // the information from the file containing the serialized data is equivalent to deserialization
     cout << "Testing serialization and deserialization:" << endl;
+    
     {
       // Serialization testing
       Plant plant("Cherry", 3, 7);
@@ -101,6 +120,52 @@ void testSerializeDeserialize() {
       assert(deserializedPlant->getName() == "Cherry" && "Test 4.2 failed: Incorrect name after deserialization");
       assert(deserializedPlant->getPrice() == 3 && "Test 4.3 failed: Incorrect buy price after deserialization");
       assert(deserializedPlant->getSellPrice() == 7 && "Test 4.4 failed: Incorrect sell price after deserialization");
+      delete deserializedPlant;  // Clean up
+      inFile.close();
+    }
+
+    {
+      // Serialization testing
+      Plant plant("Orange", 14, 25);
+      ofstream outFile("testPlant.txt");
+      assert(outFile); // Error is outfile is not created
+      plant.serialize(outFile);
+      outFile.close();
+
+      // Deserialization testing
+      ifstream inFile("testPlant.txt");
+      string type;
+      inFile>>type;
+      assert(inFile); // Error if inFile cannot open
+
+      Plant* deserializedPlant = Plant::deserialize(inFile);
+      assert(deserializedPlant != nullptr && "Test 4.1 failed: Deserialization returned nullptr");
+      assert(deserializedPlant->getName() == "Orange" && "Test 4.2 failed: Incorrect name after deserialization");
+      assert(deserializedPlant->getPrice() == 14 && "Test 4.3 failed: Incorrect buy price after deserialization");
+      assert(deserializedPlant->getSellPrice() == 25 && "Test 4.4 failed: Incorrect sell price after deserialization");
+      delete deserializedPlant;  // Clean up
+      inFile.close();
+    }
+
+    {
+      // Serialization testing
+      Plant plant("Mango", 16, 38);
+      ofstream outFile("testPlant.txt");
+      assert(outFile); // Error is outfile is not created
+      plant.serialize(outFile);
+      outFile.close();
+
+      // Deserialization testing
+      ifstream inFile("testPlant.txt");
+      string type;
+      inFile>>type;
+      assert(inFile); // Error if inFile cannot open
+
+      Plant* deserializedPlant = Plant::deserialize(inFile);
+      assert(deserializedPlant != nullptr && "Test 4.1 failed: Deserialization returned nullptr");
+      assert(deserializedPlant->getName() == "Mango" && "Test 4.2 failed: Incorrect name after deserialization");
+      assert(deserializedPlant->getPrice() == 16 && "Test 4.3 failed: Incorrect buy price after deserialization");
+      assert(deserializedPlant->getSellPrice() == 38 && "Test 4.4 failed: Incorrect sell price after deserialization");
       delete deserializedPlant;  // Clean up
       inFile.close();
     }
