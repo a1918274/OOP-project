@@ -30,13 +30,11 @@ int main() {
   // TestValidNumberCheck testValidNumberCheck;
   // testValidNumberCheck.runTests();
 
-<<<<<<< HEAD
   TestShop testShop;
   testShop.runTests();
-=======
-   TestInventory testInventory;
-   testInventory.runTests();
->>>>>>> 0df8c73f9399f4a70293938a50bfc2dae603d677
+
+  TestInventory testInventory;
+  testInventory.runTests();
 
   // [ ITEM TESTS ]
 
