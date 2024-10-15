@@ -4,7 +4,7 @@
 #include "TestDayManager.h"
 #include "TestDog.h"
 #include "TestGrownAnimal.h"
-// #include "TestInventory.h"
+#include "TestInventory.h"
 #include "TestMainMenu.h"
 #include "TestPlant.h"
 #include "TestSeed.h"
@@ -16,8 +16,8 @@
 int main() {
   // [ MENU TESTS ]
 
-  // TestMainMenu testMainMenu;
-  // testMainMenu.runTests();
+   TestMainMenu testMainMenu;
+   testMainMenu.runTests();
 
   // [ GAME LOGIC TESTS ]
 
@@ -30,8 +30,8 @@ int main() {
   // TestValidNumberCheck testValidNumberCheck;
   // testValidNumberCheck.runTests();
 
-  TestShop testShop;
-  testShop.runTests();
+  // TestShop testShop;
+  // testShop.runTests();
 
   // TestInventory testInventory;
   // testInventory.runTests();
