@@ -10,22 +10,21 @@ Seed::Seed(const string& n, int p) : Item(n, p, 1) {}
 // display the seed's name and price (override method from parent class)
 void Seed::display() const {
   cout << "[ " << getItemCount() << "x ] "
-         << "Seed: " << getName()
-         << ", Price: " << getPrice() << " gold\n";
+       << "Seed: " << getName()
+       << ", Price: " << getPrice() << " gold\n";
 }
 
 // returns the type of plant that the seed grows into
 string Seed::getPlantType() const {
-    if (getName() == "Potato(Seeds)") {
-        return "Potatoes";
-    } else if (getName() == "Corn(Seeds)") {
-        return "Corn";
-    } else if (getName() == "Tomato(Seeds)") {
-        return "Tomatoes";
-    }
-    return ""; // Return an empty string if no matching seed is found
+  if (getName() == "Potato(Seeds)") {
+    return "Potatoes";
+  } else if (getName() == "Corn(Seeds)") {
+    return "Corn";
+  } else if (getName() == "Tomato(Seeds)") {
+    return "Tomatoes";
+  }
+  return ""; // Return an empty string if no matching seed is found
 }
-
 
 // grow the seed into a plant
 Plant* Seed::grow() const {
@@ -48,21 +47,18 @@ void Seed::serialize(std::ofstream& outFile) const {
     outFile << "Seed " << getName() << " " << getPrice() << " " << getItemCount() << "\n";
 }
 
-
 // deserialize a seed from a file
 Seed* Seed::deserialize(std::ifstream& inFile) {
-    string name;
-    int price, count;
+  string name;
+  int price, count;
 
+  // Error checking for reading from file
+  if (!(inFile >> name >> price >> count)) {
+    cerr << "Error reading seed data from file." << endl;
+    return nullptr; // Handle read failure
+  }
 
-    // Error checking for reading from file
-    if (!(inFile >> name >> price >> count)) {
-        cerr << "Error reading seed data from file." << endl;
-        return nullptr; // Handle read failure
-    }
-
-
-    Seed* seed = new Seed(name, price); // Create a new seed object
-    seed->setItemCount(count); // Set item count using the setter
-    return seed;
+  Seed* seed = new Seed(name, price); // Create a new seed object
+  seed->setItemCount(count); // Set item count using the setter
+  return seed;
 }
