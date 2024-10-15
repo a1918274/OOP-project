@@ -13,15 +13,15 @@ using namespace std;
 
 // Constructor to initialize game state
 Game::Game() : gold(20), dayManager(3), shop(), weather() {
-    weather.generateWeather(); // Initialize the weather
+    weather.setWeather(Weather::SUNNY); // Initialize the weather
 }
 
 // Initializes a new game
 void Game::initializeGame() {
-    gold = 20;                  // Reset gold
-    dayManager.reset();         // Reset day manager
-    inventory.clear();          // Clear inventory
-    weather.generateWeather();  // Generate initial weather
+    gold = 20;                          // Reset gold
+    dayManager.reset();                 // Reset day manager
+    inventory.clear();                  // Clear inventory
+    weather.setWeather(Weather::SUNNY); // Sunny on Day 1
 }
 
 // Displays the menu with available actions
