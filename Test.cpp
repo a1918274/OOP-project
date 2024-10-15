@@ -6,6 +6,7 @@
 #include "TestValidNumberCheck.h"
 #include "TestWeather.h"
 #include "TestPlant.h"
+#include "TestYoungAnimal.h"
 
 int main() {
   //   TestDayManager testDayManger;
@@ -25,6 +26,9 @@ int main() {
 
   TestPlant testPlant;
   testPlant.runTests();
+
+  TestYoungAnimal testYoungAnimal;
+  testYoungAnimal.runTests();
 
   return 0;
 }

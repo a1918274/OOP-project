@@ -7,6 +7,8 @@
 #include "Item.h"
 #include "Plant.h"
 
+// Testing for the Plant class
+
 using namespace std;
 
 class TestPlant {
@@ -60,27 +62,25 @@ void testGetSellType(){
 
     {
     Plant plant("Corn", 6, 0);
-    if (plant.getSellPrice() != 0); {
+    if (plant.getSellPrice() != 0) {
         cout << "Test 3.2 failed" << endl;
         } 
     }
 
     {
     Plant plant("Corn", 6, 29);
-    if (plant.getSellPrice() != 29); {
+    if (plant.getSellPrice() != 29) {
         cout << "Test 3.3 failed" << endl;
         }
     }
     cout << "Test 3 (getSellType) passed" << endl;
 }
-};
 
 void testSerializeDeserialize() {
     // The serialize and deserialize functions are grouped together for testing, as retrieving
     // the information from the file containing the serialized data is equivalent to deserialization
+    cout << "Testing serialization and deserialization:" << endl;
     {
-      cout << "Testing serialization and deserialization:" << endl;
-
       // Serialization testing
       Plant plant("Cherry", 3, 7);
       ofstream outFile("test_plant.txt");
@@ -100,5 +100,7 @@ void testSerializeDeserialize() {
 
     cout << "Test 4 (serialization and deserialization) passed" << endl;
   }
+};
+
 
 #endif //TESTPLANT_H
