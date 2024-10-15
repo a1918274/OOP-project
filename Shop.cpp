@@ -28,11 +28,13 @@ Shop::~Shop() {
 
 //Displaying available items for purchase
 void Shop::displayItems() const {
-    cout << "\n( Available items to buy: )\n";
+    cout << "\n_____________________________________\n\n";    
+    cout << "( Available items to buy: )\n";
     for (size_t i = 0; i < inventory.getItems().size(); ++i) {
         cout << i + 1 << ". " << inventory.getItems()[i]->getName() << " ("
              << inventory.getItems()[i]->getPrice() << " gold)\n";
     }
+    cout << "\n";
 }
 
 // Handles item purchasing logic
@@ -67,7 +69,7 @@ bool Shop::buyItem(int choice, int& gold, Inventory& playerInventory) {
         if (it != playerInventory.getItems().end()) {
             // If the item already exists in the player's inventory, increment the count
             (*it)->incrementCount();
-            cout << "You bought another " << shopItem->getName() << ". Total count: " << (*it)->getItemCount() << ".\n";
+            cout << "\nYou bought another " << shopItem->getName() << ". Total count: " << (*it)->getItemCount() << ".\n";
         } else {
             // If the item doesn't exist in the player's inventory, create a new one and add it
             if (Seed* seed = dynamic_cast<Seed*>(shopItem)) {
@@ -78,12 +80,12 @@ bool Shop::buyItem(int choice, int& gold, Inventory& playerInventory) {
                 playerInventory.addItem(new Dog(*dog));  // Adds the Dog to player's inventory
                 }
 
-            cout << "You bought " << shopItem->getName() << " for " << shopItem->getPrice() << " gold.\n";
+            cout << "\nYou bought " << shopItem->getName() << " for " << shopItem->getPrice() << " gold.\n";
         }
 
         return false;  // Return false to indicate the player can't afford the item
     } else {
-        cout << "You're broke lol.\n";
+        cout << "\n Uhhhh.... You're broke lol.\n";
         return false;
     }
 }

@@ -13,12 +13,12 @@ MainMenu::MainMenu(Game* gameInstance) : game(gameInstance) {}
 void MainMenu::displayMenu() {
   string input;  // Change to string to handle input
   while (true) {
-    cout << "_____________________________________\n";
+    cout << "\n_____________________________________\n\n";
     cout << "Welcome to Happy Life Farm :)\n\n";
     cout << "Select a number to begin\n";
     cout << "1. New Game\n";
     cout << "2. Load Game\n";
-    cout << "3. Quit Game\n";
+    cout << "3. Quit Game\n\n";
     cout << "Choose an option: ";
     cin >> input;  // Read input as a string
 
@@ -27,7 +27,7 @@ void MainMenu::displayMenu() {
       int choice = stoi(input);  // Convert to integer
       handleSelection(choice);   // Handle the user's selection
     } else {
-      cout << "Please stop trying to break the game :(\n";  // Error message for invalid input
+      cout << "\nPlease don't try to break the game :(\n";  // Error message for invalid input
     }
   }
 }

@@ -28,19 +28,19 @@ void Game::initializeGame() {
 void Game::displayMenu() {
     string weatherString = weather.getWeatherString(); // Fetch formatted weather string
 
-    cout << "_____________________________________\n\n\n";
+    cout << "\n_____________________________________\n\n";
     cout << "[ Day: " << dayManager.getDay();
     cout << ", Actions remaining: " << dayManager.getActions() << " ]\n";
     cout << "[ Weather: " << weatherString << " ]\n";
     cout << "[ Gold: " << gold << " ]\n\n";
     cout << "( Choose a number to act on: )\n";
-    cout << "1. Buy\n";
-    cout << "2. Tend to items\n";
-    cout << "3. Sell items\n";
+    cout << "1. Buy Seeds/Animals\n";
+    cout << "2. Tend to Farm\n";
+    cout << "3. Sell all Produce\n";
     cout << "4. Check Inventory\n";
     cout << "5. Sleep\n\n";
     cout << "9. Save Game\n";
-    cout << "0. Return to Main Menu\n";
+    cout << "0. Return to Main Menu\n\n";
 }
 
 // Interacts with the shop and buys items into the player's inventory
@@ -52,7 +52,7 @@ void Game::buyItem() {
 
     // Validate input using the ValidNumberCheck class
     if (!ValidNumberCheck::isValidNumber(input)) {
-        cout << "The shop keeper looks at you puzzled and advises that they don't have that.\n";
+        cout << "\nThe shop keeper looks at you puzzled and advises that they don't have that.\n";
         return;
     }
 
@@ -82,7 +82,7 @@ void Game::buyItem() {
 
 void Game::tendToItems() {
     if (inventory.getItems().empty()) {
-        cout << "You have nothing to tend to.\n";
+        cout << "\nYou have nothing to tend to.\n";
         return;
     }
 
@@ -181,7 +181,7 @@ void Game::tendToItems() {
     // Print the general message if any young animals were grown
     if (animalsGrown) {
         cout << "Your young animals have grown into adult animals.\n";
-        cout << "Grown animals will now create produce at the end of each day which can be sold.\n";
+        cout << "Grown animals will stay in your farm and produce sellable items at the end of each day.\n";
     }
 
     // Consume an action at the end of tending
@@ -190,6 +190,7 @@ void Game::tendToItems() {
 
 // Sells all items for gold and returns gold to player
 void Game::sellItems() {
+    cout << "\nYou harvest and sell all the produce that is ready:\n";
     int totalSale = 0;               // Initialize total sale amount
     vector<Item*> itemsToRemove;     // Track plants to remove
     vector<Item*> itemsToUpdate;     // Track animals to update (for produce)
@@ -205,7 +206,8 @@ void Game::sellItems() {
 
             // Calculate total sale for this plant type
             totalSale += sellPrice * plantCount;
-            cout << plant->getName() << " sold for " << (sellPrice * plantCount) << " gold.\n";
+            cout << plant->getName() << " sold for " 
+                 << (sellPrice * plantCount) << " gold.\n";
 
             itemsToRemove.push_back(item);  // Mark the plant for removal after selling
 
@@ -237,7 +239,7 @@ void Game::sellItems() {
     }
 
     gold += totalSale;  // Update player's gold
-    cout << "Total sale: " << totalSale << " gold.\n";
+    cout << "\nTotal sale: " << totalSale << " gold.\n";
 
     // Consume an action at the end of selling
     dayManager.performAction();
@@ -250,7 +252,7 @@ void Game::displayInventory() {
 
 // Resets actions for a new day and advances the day counter
 void Game::sleep() {
-    cout << "You have chosen to sleep a bit earlier. Good choice\n";
+    cout << "\nYou have chosen to sleep a bit earlier. Good choice\n";
     cout << "Day " << dayManager.getDay() << " comes to an end.\n";
 
     // Generate produce for all GrownAnimals
@@ -288,7 +290,7 @@ void Game::saveGame() {
     }
 
     outFile.close(); // Close the file
-    cout << "Game state saved.\n"; // Inform user of success
+    cout << "\nGame state saved.\n"; // Inform user of success
 }
 
 // Load the game state
@@ -326,16 +328,15 @@ void Game::loadGame() {
     }
 
     inFile.close(); // Close the file
-    cout << "Game state loaded.\n"; // Inform user of success
+    cout << "\nGame state loaded.\n"; // Inform user of success
 }
-
 
 // Main game loop
 void Game::play() {
     while (true) {
         // Check if actions are exhausted
         if (dayManager.getActions() <= 0) {
-            cout << "You've worked hard and decided to call it a night!\n";
+            cout << "\nYou've worked hard and decided to call it a night!\n";
             dayManager.nextDay();                       // Advance to the next day
             dayManager.setActions(3);                   // Reset actions for the new day
             weather.generateWeather();                  // Generate new weather
@@ -359,7 +360,7 @@ void Game::play() {
 
         // Validate if the input is a valid number
         if (!ValidNumberCheck::isValidNumber(choice)) {
-            cout << "Your brain looks at you puzzled and advises for you to read a book.\n";
+            cout << "\nYour brain looks at you puzzled and advises for you check the options again.\n";
             continue; // Restart the loop for valid input
         }
 
@@ -379,7 +380,7 @@ void Game::play() {
         } else if (choice == "0") {
             return;                     // Return to main menu
         } else {
-            cout << "Invalid choice. Please try again.\n"; // Handle invalid choices
+            cout << "\nOk seriously... Please stop trying to break the game.\n"; // Handle invalid choices
         }
     }
 }
