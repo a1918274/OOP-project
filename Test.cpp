@@ -32,7 +32,6 @@ int main() {
 
   TestShop testShop;
   testShop.runTests();
-  
 
   TestInventory testInventory;
   testInventory.runTests();
