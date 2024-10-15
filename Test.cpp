@@ -5,7 +5,6 @@
 #include "TestDog.h"
 #include "TestGrownAnimal.h"
 #include "TestInventory.h"
-#include "TestMainMenu.h"
 #include "TestPlant.h"
 #include "TestSeed.h"
 #include "TestShop.h"
@@ -15,9 +14,7 @@
 
 int main() {
   // [ MENU TESTS ]
-
-   TestMainMenu testMainMenu;
-   testMainMenu.runTests();
+  // For MainMenu testing, refer to text file documentation
 
   // [ GAME LOGIC TESTS ]
 
