@@ -28,9 +28,20 @@ class TestDog {
       Dog dog("Happy", 100);
       assert((dog.getName() == "Happy") && (dog.getPrice() == 100));
     }
-    
+
+    {
+      Dog dog("doggie", 0);
+      assert((dog.getName() == "doggie") && (dog.getPrice() == 0));
+    }
+
+    {
+      Dog dog("Tofu", -1);
+      assert((dog.getName() == "Tofu") && (dog.getPrice() == -1));
+    }
+
     cout << "All test passed!" << endl;
   }
+
   void testDisplay() {
     {
       Dog dog("dog", 9);
