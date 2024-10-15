@@ -61,7 +61,7 @@ run: $(TARGET)
 	./$(TARGET)
 
 # source files for testing (include all *.cpp afterwards - couldnt compile now)
-SOURCE_HEADER = TestDayManager.h TestValidNumberCheck.h TestMainMenu.h
+SOURCE_HEADER = TestDayManager.h TestValidNumberCheck.h TestDog.h TestGame.h TestGrownAnimal.h TestInventory.h TestPlant.h TestSeed.h TestShop.h TestWeather.h TestYoungAnimal.h
 SOURCE_CPP = Test.cpp Animal.cpp DayManager.cpp Dog.cpp Game.cpp GrownAnimal.cpp Inventory.cpp Item.cpp MainMenu.cpp Plant.cpp Seed.cpp Shop.cpp ValidNumberCheck.cpp Weather.cpp YoungAnimal.cpp
 
 # target to run the main testing file with normal flags
