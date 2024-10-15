@@ -25,6 +25,7 @@ class TestWeather {
  private:
   void testGenerateWeather() {
     cout << "Testing for generate weather:\n";
+
     {
       Weather weather;
       weather.generateWeather();
@@ -54,6 +55,7 @@ class TestWeather {
 
   void testGetSetWeather() {
     cout << "Testing for getWeather and setWeather:\n";
+
     {
       Weather weather;
       weather.setWeather(Weather::SUNNY);
