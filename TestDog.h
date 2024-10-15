@@ -119,10 +119,13 @@ class TestDog {
       outFile.close();
 
       // deserialization
-      string type;
       std::ifstream inFile("testDog.txt");
-      assert(inFile);  // Error if inFile cannot open
+
+      // Read the item type first
+      string type;
       inFile >> type;
+
+      assert(inFile);  // Error if inFile cannot open
       Dog* deserializedDog = Dog::deserialize(inFile);
       assert(deserializedDog->getName() == "yappie" &&
              deserializedDog->getPrice() == 50 &&

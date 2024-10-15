@@ -7,7 +7,8 @@
 #include "TestPlant.h"
 #include "TestValidNumberCheck.h"
 #include "TestWeather.h"
-#include "YoungAnimal.h"
+#include "TestYoungAnimal.h"
+#include "TestGrownAnimal.h"
 
 int main() {
   // [ MENU TESTS ]
