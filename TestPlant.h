@@ -12,12 +12,12 @@ using namespace std;
 class TestPlant {
 public:
     void runTests(){
-        cout << "\nRunning tests for Seed:\n\n";
+        cout << "\nRunning tests for Plant:\n\n";
         testConstructor();
         testDisplay();
         testGetSellType();
         testSerializeDeserialize();
-        cout << "\nFinished tests for Seed.\n\n";
+        cout << "\nFinished tests for Plant.\n\n";
     }
 
 private:
