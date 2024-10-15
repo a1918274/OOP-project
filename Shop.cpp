@@ -21,11 +21,9 @@ Shop::Shop() {
   inventory.addItem(new Dog("The Cutest Dog", 200));
 }
 
-// Destructor to clean up dynamically allocated items
+// Destructor to clear the inventory, freeing memory
 Shop::~Shop() {
-  for (auto item : inventory.getItems()) {
-    delete item;  // Free memory for each item
-  }
+  inventory.clear();  // call delete on each dynamically allocated item
 }
 
 // Getter for inventory
@@ -33,13 +31,13 @@ Inventory& Shop::getInventory() { return inventory; }
 
 // Displaying available items for purchase
 void Shop::displayItems() const {
-    cout << "\n_____________________________________\n\n";    
-    cout << "( Available items to buy: )\n";
-    for (size_t i = 0; i < inventory.getItems().size(); ++i) {
-        cout << i + 1 << ". " << inventory.getItems()[i]->getName() << " ("
-             << inventory.getItems()[i]->getPrice() << " gold)\n";
-    }
-    cout << "\n";
+  cout << "\n_____________________________________\n\n";
+  cout << "( Available items to buy: )\n";
+  for (size_t i = 0; i < inventory.getItems().size(); ++i) {
+    cout << i + 1 << ". " << inventory.getItems()[i]->getName() << " ("
+         << inventory.getItems()[i]->getPrice() << " gold)\n";
+  }
+  cout << "\n";
 }
 
 // Handles item purchasing logic
@@ -76,26 +74,33 @@ bool Shop::buyItem(int choice, int& gold, Inventory& playerInventory) {
         playerInventory.getItems().begin(), playerInventory.getItems().end(),
         [shopItem](Item* i) { return i->getName() == shopItem->getName(); });
 
-        if (it != playerInventory.getItems().end()) {
-            // If the item already exists in the player's inventory, increment the count
-            (*it)->incrementCount();
-            cout << "\nYou bought another " << shopItem->getName() << ". Total count: " << (*it)->getItemCount() << ".\n";
-        } else {
-            // If the item doesn't exist in the player's inventory, create a new one and add it
-            if (Seed* seed = dynamic_cast<Seed*>(shopItem)) {
-                playerInventory.addItem(new Seed(*seed));  // Add a new Seed item to player's inventory
-            } else if (YoungAnimal* animal = dynamic_cast<YoungAnimal*>(shopItem)) {
-                playerInventory.addItem(new YoungAnimal(*animal));  // Add a new YoungAnimal to player's inventory
-            } else if (Dog* dog = dynamic_cast<Dog*>(shopItem)) {
-                playerInventory.addItem(new Dog(*dog));  // Adds the Dog to player's inventory
-                }
-
-            cout << "\nYou bought " << shopItem->getName() << " for " << shopItem->getPrice() << " gold.\n";
-        }
-
-        return false;  // Return false to indicate the player can't afford the item
+    if (it != playerInventory.getItems().end()) {
+      // If the item already exists in the player's inventory, increment the
+      // count
+      (*it)->incrementCount();
+      cout << "\nYou bought another " << shopItem->getName()
+           << ". Total count: " << (*it)->getItemCount() << ".\n";
     } else {
-        cout << "\n Uhhhh.... You're broke lol.\n";
-        return false;
+      // If the item doesn't exist in the player's inventory, create a new one
+      // and add it
+      if (Seed* seed = dynamic_cast<Seed*>(shopItem)) {
+        playerInventory.addItem(
+            new Seed(*seed));  // Add a new Seed item to player's inventory
+      } else if (YoungAnimal* animal = dynamic_cast<YoungAnimal*>(shopItem)) {
+        playerInventory.addItem(new YoungAnimal(
+            *animal));  // Add a new YoungAnimal to player's inventory
+      } else if (Dog* dog = dynamic_cast<Dog*>(shopItem)) {
+        playerInventory.addItem(
+            new Dog(*dog));  // Adds the Dog to player's inventory
+      }
+
+      cout << "\nYou bought " << shopItem->getName() << " for "
+           << shopItem->getPrice() << " gold.\n";
     }
+
+    return false;  // Return false to indicate the player can't afford the item
+  } else {
+    cout << "\n Uhhhh.... You're broke lol.\n";
+    return false;
+  }
 }
