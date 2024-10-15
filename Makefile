@@ -66,7 +66,7 @@ SOURCE_CPP = Test.cpp Animal.cpp DayManager.cpp Dog.cpp Game.cpp GrownAnimal.cpp
 
 # target to run the main testing file with normal flags
 test: $(SOURCE_HEADER) $(SOURCE_CPP)
-	@g++ -Wall -Wextra -std=c++11 $(SOURCE_CPP) -o test
+	@g++ -Wall -g -Wextra -std=c++11 $(SOURCE_CPP) -o test
 	@./test
 	@rm -f test *.txt
 
