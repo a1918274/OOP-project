@@ -59,6 +59,18 @@ class TestGrownAnimal {
       assert(cow.getProduceCount() == 0 && "Test 2.3 failed: Produce count should be cleared");
     }
 
+    {
+      GrownAnimal bird("THAT bird", 25, "Carwash", 12);
+      bird.produceItem();
+      assert(bird.getProduceCount() == 1 && "Test 2.4 failed: Produce count should be 1 after one production");
+
+      bird.produceItem();
+      assert(bird.getProduceCount() == 2 && "Test 2.5 failed: Produce count should be 2 after two productions");
+
+      bird.clearProduce();
+      assert(bird.getProduceCount() == 0 && "Test 2.6 failed: Produce count should be cleared");
+    }
+
     cout << "All produce method tests passed!" << endl;
   }
 
@@ -73,10 +85,10 @@ class TestGrownAnimal {
     }
 
     {
-      GrownAnimal rat("Ratthew", 100, "Cheese", 15);
-      cout << "Expected Output:\n[ 1x ] Grown Animal: Ratthew, Price: 100 gold (Produce: Cheese, Produce count: 0 )\n";
+      GrownAnimal bird("THAT bird", 100, "Carwash", 15);
+      cout << "Expected Output:\n[ 1x ] Grown Animal: THAT bird, Price: 100 gold (Produce: Carwash, Produce count: 0 )\n";
       cout << "Actual Output:\n";
-      rat.display();
+      bird.display();
       cout << "Test 2 Passed" << endl;
     }
 
