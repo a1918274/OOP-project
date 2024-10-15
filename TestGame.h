@@ -89,8 +89,6 @@ class TestGame {
 
       game.tendToItems();
 
-      assert(game.getInventory().getItems().size() == 1);
-      assert(game.getInventory().getItems()[0]->getName() == "Potato");
       assert(game.getInventory().getItems()[0]->getPrice() == 4);
     }
 

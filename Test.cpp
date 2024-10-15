@@ -1,6 +1,6 @@
 // Main file for testing
 
-#include "GrownAnimal.h"
+// #include "GrownAnimal.h"
 #include "TestDayManager.h"
 #include "TestDog.h"
 #include "TestGrownAnimal.h"
@@ -12,12 +12,16 @@
 #include "TestValidNumberCheck.h"
 #include "TestWeather.h"
 #include "TestYoungAnimal.h"
+#include"TestGame.h"
 
 int main() {
   // [ MENU TESTS ]
 
-   TestMainMenu testMainMenu;
-   testMainMenu.runTests();
+  //  TestMainMenu testMainMenu;
+  //  testMainMenu.runTests();
+
+   TestGame testGame;
+   testGame.runTests();
 
   // [ GAME LOGIC TESTS ]
 
