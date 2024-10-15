@@ -3,12 +3,12 @@
 #include "GrownAnimal.h"
 #include "TestDayManager.h"
 #include "TestDog.h"
+#include "TestGrownAnimal.h"
 #include "TestMainMenu.h"
 #include "TestPlant.h"
 #include "TestValidNumberCheck.h"
 #include "TestWeather.h"
 #include "TestYoungAnimal.h"
-#include "TestGrownAnimal.h"
 
 int main() {
   // [ MENU TESTS ]
