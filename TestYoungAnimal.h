@@ -21,7 +21,7 @@ class TestYoungAnimal {
     testGetGrownAnimalType();
     testGrow();
     testDisplay();
-    testSerialization();
+    testSerializeDeserialize();
     cout << "\nFinished testing for YoungAnimal!\n\n";
   }
 
@@ -97,18 +97,24 @@ class TestYoungAnimal {
     cout << "Display method tested!" << endl;
   }
 
-  void testSerialization() {
+  void testSerializeDeserialize() {
     cout << "Testing serialization and deserialization:" << endl;
 
     {
       // Test serialization
       YoungAnimal chick("Chick", 5, "Poultry");
-      ofstream outFile("test_YoungAnimal.txt");
+      std::ofstream outFile("test_YoungAnimal.txt");
       chick.serialize(outFile);
       outFile.close();
 
       // Test deserialization
-      ifstream inFile("test_YoungAnimal.txt");
+      std::ifstream inFile("test_YoungAnimal.txt");
+
+      // Read the item type first
+      string itemType;
+      inFile >> itemType;
+      assert(itemType == "YoungAnimal" && "Test 4.1 failed: Incorrect item type in file");
+
       YoungAnimal* deserializedChick = YoungAnimal::deserialize(inFile);
       assert(deserializedChick != nullptr && "Test 4.1 failed: Deserialization returned nullptr");
       assert(deserializedChick->getName() == "Chick" && "Test 4.2 failed: Incorrect name after deserialization");
