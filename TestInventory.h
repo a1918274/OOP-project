@@ -18,7 +18,6 @@ public:
     void runTests(){
     cout << "\n Running tests for Inventory: \n\n";
     testConstructor();
-    testDestructor();
     testGetter();
     testDisplay();
     testAddItem();
@@ -31,16 +30,9 @@ private:
     void testConstructor(){
         cout << "Testing Inventory constructor:\n";
         Inventory inventory;
-        if (inventory.getItems().empty())
-        assert(inventory().getItems().empty() == nullptr && "Test failed, inventory is not initialised");
-        cout << "Test 1 (constructor) passed" << endl;
-    }
-
-    void testDestructor() {
-        cout << "Testing Inventory deconstructor:\n";
-        Inventory inventory;
-        assert(~inventory() == nullptr && "Test failed, inventory has not been cleared");
-        cout << "Test 2 (deconstructor) passed" << endl;
+        //if (inventory.getItems().empty());
+        assert(inventory.getItems().empty() && "Test failed, inventory is not initialised");
+        cout << "Test 1 (constructor) passed\n" << endl;
     }
 
     void testGetter(){
@@ -63,14 +55,15 @@ private:
         inventory.addItem(new Seed("Corn(Seeds)", 8));
         inventory.getItems();
         }
-        cout << "Test 3 (getItem) passed" << endl;
+        cout << "Test 2 (getItem) passed\n" << endl;
     }
 
     void testDisplay(){
+        cout << "Testing Inventory Display:\n";
         {// Displaying empty inventory
         Inventory inventory;
-        cout << "Expected Output:\n";
-        cout << "Actual Output:\n";
+        cout << "Expected Output: Your inventory is empty\n";
+        cout << "Actual Output:";
         inventory.display();
         }
         {
@@ -78,7 +71,7 @@ private:
         Inventory inventory;
         inventory.addItem(new Seed("Potato(Seeds)", 4));
         cout << "Expected Output:\n[ 1x ] Seed: Potato(Seeds), Price: 4 gold\n";
-        cout <<"Actual Output:\n";
+        cout <<"Actual Output:";
         inventory.display();
         }
         {
@@ -87,10 +80,10 @@ private:
         inventory.addItem(new Seed("Potato(Seeds)", 4));
         inventory.addItem(new Seed("Corn(Seeds)", 8));
         cout << "Expected Output:\n[ 1x ] Seed: Potato(Seeds), Price: 4 gold\n[ 1x ] Seed: Corn(Seeds), Price: 8 gold\n";
-        cout << "Actual Output:\n";
+        cout << "Actual Output:";
         inventory.display();
         }
-        cout << "Test 4 (display) passed" << endl;
+        cout << "Test 3 (display) passed\n" << endl;
     }
 
     void testAddItem(){
@@ -108,32 +101,45 @@ private:
         inventory.addItem(new Seed("Corn(Seeds)", 8));
         inventory.getItems();
         }
-    cout << "Test 5 (addItem) passed" << endl;
+    cout << "Test 4 (addItem) passed\n" << endl;
     }
 
     void testRemoveItem(){
       cout << "Testing Inventory removeItem:\n";
         {
-        // Adding an item to empty inventory
+        // Removing item from an empty inventory
         Inventory inventory;
-        inventory.addItem(new Seed("Potato(Seeds)", 4));
-        inventory.getItems();
+        Seed* seed = new Seed("Potato(Seeds)", 4);
+        inventory.removeItem(seed);
+        assert(inventory.getItems().empty() && "Test failed, inventory storage issue");
         }
         {
-        // Adding an item to inventory with prior items
+        // Removing only item to create empty inventory
         Inventory inventory;
-        inventory.addItem(new Seed("Potato(Seeds)", 4));
-        inventory.addItem(new Seed("Corn(Seeds)", 8));
-        inventory.getItems();
+        Seed* seed = new Seed("Potato(Seeds)", 4);
+        inventory.addItem(seed);
+        inventory.removeItem(seed);
+        assert(inventory.getItems().empty() && "Test failed, item has not been removed");
         }
-    cout << "Test 6 (addItem) passed" << endl;
+        {
+        // Removing an item from inventory with multiple items
+        Inventory inventory;
+        Seed* seed1 = new Seed("Potato(Seeds)", 4);
+        Seed* seed2 = new Seed("Corn(Seeds)", 8);
+        inventory.addItem(seed1);
+        inventory.addItem(seed2);
+        inventory.removeItem(seed1);
+        assert(inventory.getItems().front() == seed2 && "Test failed, item removal unsuccesful");
+        }
+    cout << "Test 5 (removeItem) passed\n" << endl;
 
     }  
 
     void testClear(){
         Inventory inventory;
-        assert(~inventory() == nullptr && "Test failed, inventory has not been cleared");
-        cout << "Test 7 (Clear) passed" << endl;
+        inventory.clear();
+        assert(inventory.getItems().empty() && "Test failed, inventory has not been cleared");
+        cout << "Test 6 (Clear) passed" << endl;
     }
 };
 
