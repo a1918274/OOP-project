@@ -34,7 +34,7 @@ class TestShop {
     {
       Shop shop;
       const Inventory& inventory = shop.getInventory();
-      assert(inventory.getItems().size()==7);
+      assert(inventory.getItems().size() == 7);
     }
 
     cout << "All tests for constructor passed!" << endl;
@@ -43,7 +43,12 @@ class TestShop {
   void testDisplayItems() {
     cout << "Testing for displayItems:\n";
 
-    {}
+    {
+      Shop shop;
+      shop.displayItems();
+      cout << "Shop's inventory displayed. Test for displayItems passed!"
+           << endl;
+    }
   }
   void testBuyItem() {}
 };

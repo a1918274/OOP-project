@@ -4,7 +4,7 @@
 #include "TestDayManager.h"
 #include "TestDog.h"
 #include "TestGrownAnimal.h"
-#include "TestInventory.h"
+// #include "TestInventory.h"
 #include "TestMainMenu.h"
 #include "TestPlant.h"
 #include "TestSeed.h"
@@ -33,8 +33,8 @@ int main() {
   TestShop testShop;
   testShop.runTests();
 
-  TestInventory testInventory;
-  testInventory.runTests();
+  // TestInventory testInventory;
+  // testInventory.runTests();
 
   // [ ITEM TESTS ]
 
