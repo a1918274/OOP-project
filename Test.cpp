@@ -16,22 +16,8 @@ int main() {
   // TestMainMenu testMainMenu;
   // testMainMenu.runTests();
 
-
-
-  // [ GAME LOGIC TESTS ]
-
-  // TestDayManager testDayManger;
-  // testDayManger.runTests();
-
-  // TestWeather testWeather;
-  // testWeather.runTests();
-
-  // TestValidNumberCheck testValidNumberCheck;
-  // testValidNumberCheck.runTests();
-
-
-
-  // [ ITEM TESTS ]
+  TestWeather testWeather;
+  testWeather.runTests();
 
   // TestDog testDog;
   // testDog.runTests();
@@ -41,11 +27,6 @@ int main() {
 
   // TestYoungAnimal testYoungAnimal;
   // testYoungAnimal.runTests();
-
-  // TestGrownAnimal testGrownAnimal;
-  // testGrownAnimal.runTests();
-
-
 
   return 0;
 }
