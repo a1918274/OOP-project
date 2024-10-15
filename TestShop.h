@@ -16,8 +16,8 @@ class TestShop {
   void runTests() {
     cout << "\nStart testing for Shop:\n\n";
     testConstructor();
-    // testDisplayItems();
-    // testBuyItem();
+    testDisplayItems();
+    testBuyItem();
     cout << "\nFinished testing for Shop!\n\n";
   }
 
@@ -28,17 +28,22 @@ class TestShop {
     {
       // Inventory inventory;
       Shop shop;
-      Inventory& inventory = shop.getInventory();
-      cout<<"checking for assert:\n";
+      const Inventory& inventory = shop.getInventory();
       assert(!inventory.getItems().empty());
-      cout<<"assert run\n";
+      // shop.~Shop();
     }
 
     cout << "All tests for constructor passed!" << endl;
   }
 
-  // void testDisplayItems() {}
-  // void testBuyItem() {}
+  void testDisplayItems() {
+    cout<<"Testing for displayItems:\n";
+
+    {
+
+    }
+  }
+  void testBuyItem() {}
 };
 
 #endif  // TESTSHOP_H
