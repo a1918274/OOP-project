@@ -94,16 +94,16 @@ class TestYoungAnimal {
 
     {
       YoungAnimal chick("Chick", 5, "Poultry");
-      cout << "Expected Output:\n[ 1x ] Young Animal: Chick, Price: 5 gold (Type: Poultry)\n";
-      cout << "Actual Output:\n";
+      cout << "Expected output:\n[ 1x ] Young Animal: Chick, Price: 5 gold (Type: Poultry)\n";
+      cout << "Actual output:\n";
       chick.display();
       cout << "Test 1 Passed" << endl;
     }
 
     {
       YoungAnimal rat("Ratthew", 2, "Cheese Lover");
-      cout << "Expected Output:\n[ 1x ] Young Animal: Ratthew, Price: 2 gold (Type: Cheese Lover)\n";
-      cout << "Actual Output:\n";
+      cout << "Expected output:\n[ 1x ] Young Animal: Ratthew, Price: 2 gold (Type: Cheese Lover)\n";
+      cout << "Actual output:\n";
       rat.display();
       cout << "Test 2 Passed" << endl;
     }

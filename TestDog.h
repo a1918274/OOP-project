@@ -49,16 +49,16 @@ class TestDog {
 
     {
       Dog dog("Happy", 100);
-      cout << "Expected output: [ 1x ] Dog: Happy (100 gold)\n";
-      cout << "Actual output: ";
+      cout << "Expected output:\n[ 1x ] Dog: Happy (100 gold)\n";
+      cout << "Actual output:\n";
       dog.display();
       cout << "Test 1 passed!" << endl;
     }
 
     {
       Dog dog("Doggie", 0);
-      cout << "Expected output: [ 1x ] Dog: Doggie (0 gold)\n";
-      cout << "Actual output: ";
+      cout << "Expected output:\n[ 1x ] Dog: Doggie (0 gold)\n";
+      cout << "Actual output:\n";
       dog.display();
       cout << "Test 2 passed!" << endl;
     }

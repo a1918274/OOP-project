@@ -51,24 +51,27 @@ public:
   void testDisplay() {
     cout << "Testing Plant display:\n";
 
-    {Plant plant("Corn", 6, 9);
-    // Manually check the subsequent output to confirm display format is correct
-    cout << "Expected output: [ 1x ] Plant: Corn, Sell Price: 9 gold\n";
-      cout << "Actual output: ";
+    {
+      Plant plant("Corn", 6, 9);
+      // Manually check the subsequent output to confirm display format is correct
+      cout << "Expected output:\n[ 1x ] Plant: Corn, Sell Price: 9 gold\n";
+      cout << "Actual output:\n";
       plant.display();
     }
 
-    {Plant plant("Rose", 12, 30);
-    // Manually check the subsequent output to confirm display format is correct
-    cout << "Expected output: [ 1x ] Plant: Rose, Sell Price: 30 gold\n";
-      cout << "Actual output: ";
+    {
+      Plant plant("Rose", 12, 30);
+      // Manually check the subsequent output to confirm display format is correct
+      cout << "Expected output:\n[ 1x ] Plant: Rose, Sell Price: 30 gold\n";
+      cout << "Actual output:\n";
       plant.display();
     }
 
-    {Plant plant("Daisy", 1, 2);
-    // Manually check the subsequent output to confirm display format is correct
-    cout << "Expected output: [ 1x ] Plant: Daisy, Sell Price: 2 gold\n";
-      cout << "Actual output: ";
+    {
+      Plant plant("Daisy", 1, 2);
+      // Manually check the subsequent output to confirm display format is correct
+      cout << "Expected output:\n[ 1x ] Plant: Daisy, Sell Price: 2 gold\n";
+      cout << "Actual output:\n";
       plant.display();
     }
 
