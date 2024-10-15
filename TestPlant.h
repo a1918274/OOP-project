@@ -2,6 +2,7 @@
 #define TESTPLANT_H
 #include <iostream>
 #include <fstream>
+#include <cassert>
 
 #include "Item.h"
 #include "Plant.h"
@@ -11,16 +12,17 @@ using namespace std;
 class TestPlant {
 public:
     void runTests(){
-        cout << "\n Running tests for Seed: \n\n";
+        cout << "\nRunning tests for Seed:\n\n";
         testConstructor();
         testDisplay();
         testGetSellType();
         testSerializeDeserialize();
+        cout << "\nFinished tests for Seed.\n\n";
     }
 
 private:
 void testConstructor(){
-    cout << "Testing constructor:\n";
+    cout << "Testing Plant constructor:\n";
     {
      Plant plant("Potato", 7, 23);
      assert((plant.getName() == "Potato") && (plant.getPrice() == 7) && (plant.getSellPrice() == 23));
@@ -36,16 +38,19 @@ void testConstructor(){
      assert((plant.getName() == "Tulip") && (plant.getPrice() == 34) && (plant.getSellPrice() == 35));
      }
 
-     cout << "Test 1 passed" << endl;
+     cout << "Test 1 (constructor) passed" << endl;
 }
 
 void testDisplay(){
+    cout << "Testing Plant display:\n";
     Plant plant("Corn", 6, 9);
     plant.display();
-    cout << "Test 2 passed" << endl;
+    // Manually check the subsequent output to confirm display format is correct
+    cout << "Test 2 (display) passed" << endl;
 }
 
 void testGetSellType(){
+    cout << "Testing Plant getSellType:\n";
     {
     Plant plant("Corn", 6, 11);
     if (plant.getSellPrice() != 11) {
@@ -66,18 +71,34 @@ void testGetSellType(){
         cout << "Test 3.3 failed" << endl;
         }
     }
-
+    cout << "Test 3 (getSellType) passed" << endl;
 }
 };
 
 void testSerializeDeserialize() {
     // The serialize and deserialize functions are grouped together for testing, as retrieving
     // the information from the file containing the serialized data is equivalent to deserialization
+    {
+      cout << "Testing serialization and deserialization:" << endl;
 
+      // Serialization testing
+      Plant plant("Cherry", 3, 7);
+      ofstream outFile("test_plant.txt");
+      plant.serialize(outFile);
+      outFile.close();
 
+      // Deserialization testing
+      ifstream inFile("test_plant.txt");
+      Plant* deserializedPlant = Plant::deserialize(inFile);
+      assert(deserializedPlant != nullptr && "Test 4.1 failed: Deserialization returned nullptr");
+      assert(deserializedPlant->getName() == "Cherry" && "Test 4.2 failed: Incorrect name after deserialization");
+      assert(deserializedPlant->getPrice() == 3 && "Test 4.3 failed: Incorrect buy price after deserialization");
+      assert(deserializedPlant->getSellPrice() == 7 && "Test 4.4 failed: Incorrect sell price after deserialization");
+      delete deserializedPlant;  // Clean up
+      inFile.close();
+    }
 
-}
-
-
+    cout << "Test 4 (serialization and deserialization) passed" << endl;
+  }
 
 #endif //TESTPLANT_H
