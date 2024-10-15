@@ -1,7 +1,7 @@
 #ifndef TESTYOUNGANIMAL_H
 #define TESTYOUNGANIMAL_H
 
-// Testing for youngAnimal
+// Testing for YoungAnimal
 
 #include <iostream>
 #include <fstream>
