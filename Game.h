@@ -19,6 +19,12 @@ public:
   // Constructor
   Game();                       // Initializes the game
 
+  // Getters
+  int getGold();                // return current gold
+  int getDay();                 // return current day
+  int getActions();             // return current number of actions
+  Inventory& getInventory();    // return inventory vector
+
   // Game Control Functions
   void initializeGame();        // Initializes a new game
   void displayMenu();           // Displays the game menu
