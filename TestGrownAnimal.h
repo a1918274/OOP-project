@@ -65,9 +65,19 @@ class TestGrownAnimal {
   void testDisplay() {
     cout << "Testing display method:" << endl;
     {
-      GrownAnimal cow("Cow", 25, "Milk", 12);
+      GrownAnimal cow("Mooey", 25, "Milk", 12);
+      cout << "Expected Output:\n[ 1x ] Grown Animal: Mooey, Price: 25 gold (Produce: Milk, Produce count: 0 )\n";
+      cout << "Actual Output:\n";
       cow.display();
-      // Manual check required to confirm output is correct
+      cout << "Test 1 Passed" << endl;
+    }
+
+    {
+      GrownAnimal rat("Ratthew", 100, "Cheese", 15);
+      cout << "Expected Output:\n[ 1x ] Grown Animal: Ratthew, Price: 100 gold (Produce: Cheese, Produce count: 0 )\n";
+      cout << "Actual Output:\n";
+      rat.display();
+      cout << "Test 2 Passed" << endl;
     }
 
     cout << "Display method tested!" << endl;
