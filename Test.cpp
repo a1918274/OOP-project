@@ -18,17 +18,17 @@ int main() {
   // TestMainMenu testMainMenu;
   // testMainMenu.runTests();
 
-  // TestWeather testWeather;
-  // testWeather.runTests();
+  TestWeather testWeather;
+  testWeather.runTests();
 
-  TestDog testDog;
-  testDog.runTests();
+  // TestDog testDog;
+  // testDog.runTests();
 
-  TestPlant testPlant;
-  testPlant.runTests();
+  // TestPlant testPlant;
+  // testPlant.runTests();
 
-  TestYoungAnimal testYoungAnimal;
-  testYoungAnimal.runTests();
+  // TestYoungAnimal testYoungAnimal;
+  // testYoungAnimal.runTests();
 
   return 0;
 }
