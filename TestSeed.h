@@ -19,14 +19,14 @@ public:
         testGetPlantType();
         testGrow();
         testSerializeDeserialize();
-        cout << "\nFinished tests for Plant.\n\n";
+        cout << "\nFinished tests for Seed.\n\n";
     }
 
 private:
 void testConstructor(){
     cout << "Testing Seed constructor:\n";
     {
-     Seed seed("Strawberry(Seeds))", 6);
+     Seed seed("Strawberry(Seeds)", 6);
      assert((seed.getName() == "Strawberry(Seeds)") && (seed.getPrice() == 6));
     }
     {
@@ -45,11 +45,26 @@ void testDisplay(){
 
     {Seed seed("Corn(Seeds)", 5);
     // Manually check the subsequent output to confirm display format is correct
-    cout << "Expected output: [ 1x ] Plant: Corn, Sell Price: 9 gold\n";
+    cout << "Expected output: [ 1x ] Seed: Corn(Seeds), Price: 5 gold\n";
       cout << "Actual output: ";
       seed.display();
     }
 
+    {Seed seed("Cucumber(Seeds)", 12);
+    // Manually check the subsequent output to confirm display format is correct
+    cout << "Expected output: [ 1x ] Seed: Cucumber(Seeds), Price: 12 gold\n";
+      cout << "Actual output: ";
+      seed.display();
+    }
+
+    {Seed seed("Pear(Seeds)", 7);
+    // Manually check the subsequent output to confirm display format is correct
+    cout << "Expected output: [ 1x ] Seed: Pear(Seeds), Price: 7 gold\n";
+      cout << "Actual output: ";
+      seed.display();
+    }
+
+    cout << "Test 2 (Display) passed" << endl;
 }
 
 void testGetPlantType(){
@@ -79,7 +94,7 @@ void testGrow(){
       Seed seed("Corn(Seeds)", 8);
       Plant* sproutedSeed = seed.grow();
       assert(sproutedSeed->getName() == "Corn" && "Test 4.1 failed: Corn seeds grow into Corn");
-      assert(sproutedSeed->getSellPrice() == 8 && "Test 4.2 failed: Corn buy price should be 8");
+      assert(sproutedSeed->getPrice() == 8 && "Test 4.2 failed: Corn buy price should be 8");
       assert(sproutedSeed->getSellPrice() == 14 && "Test 4.3 failed: Corn sell price should be 14");
       delete sproutedSeed;  // Clean up dynamically allocated memory
     }
@@ -88,7 +103,7 @@ void testGrow(){
       Seed seed("Potato(Seeds)", 4);
       Plant* sproutedSeed = seed.grow();
       assert(sproutedSeed->getName() == "Potatoes" && "Test 4.1 failed: Potato seeds grow into Potatoes");
-      assert(sproutedSeed->getSellPrice() == 4 && "Test 4.2 failed: Potato buy price should be 4");
+      assert(sproutedSeed->getPrice() == 4 && "Test 4.2 failed: Potato buy price should be 4");
       assert(sproutedSeed->getSellPrice() == 5 && "Test 4.3 failed: Potato sell price should be 5");
       delete sproutedSeed;  // Clean up dynamically allocated memory
     }
@@ -96,8 +111,8 @@ void testGrow(){
     {
       Seed seed("Tomato(Seeds)", 11);
       Plant* sproutedSeed = seed.grow();
-      assert(sproutedSeed->getName() == "Potatoes" && "Test 4.1 failed: Tomato seeds grow into Tomatoes");
-      assert(sproutedSeed->getSellPrice() == 11 && "Test 4.2 failed: Tomato buy price should be 11");
+      assert(sproutedSeed->getName() == "Tomatoes" && "Test 4.1 failed: Tomato seeds grow into Tomatoes");
+      assert(sproutedSeed->getPrice() == 11 && "Test 4.2 failed: Tomato buy price should be 11");
       assert(sproutedSeed->getSellPrice() == 22 && "Test 4.3 failed: Tomato sell price should be 22");
       delete sproutedSeed;  // Clean up dynamically allocated memory
     }

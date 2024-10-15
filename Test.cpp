@@ -5,8 +5,8 @@
 #include "TestDog.h"
 #include "TestGrownAnimal.h"
 #include "TestMainMenu.h"
-#include "TestPlant.h"
 #include "TestSeed.h"
+#include "TestPlant.h"
 #include "TestValidNumberCheck.h"
 #include "TestWeather.h"
 #include "TestYoungAnimal.h"
@@ -33,8 +33,8 @@ int main() {
   // TestDog testDog;
   // testDog.runTests();
 
-  // TestSeed testSeed;
-  // testSeed.runTests();
+   TestSeed testSeed;
+   testSeed.runTests();
 
   // TestPlant testPlant;
   // testPlant.runTests();
