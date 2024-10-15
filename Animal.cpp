@@ -12,6 +12,6 @@ string Animal::getType() const {
 }
 
 // Deserialize an animal from a file
-Animal* Animal::deserialize(std::ifstream& inFile) {
+Animal* Animal::deserialize(std::ifstream& /*inFile*/) {
   return nullptr; // Return nullptr as this function is not used in animal class
 }
